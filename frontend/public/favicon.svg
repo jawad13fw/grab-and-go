@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Delivery package icon for favicon -->
+  <rect x="20" y="25" width="60" height="60" rx="6" fill="#10b981"/>
+  <rect x="25" y="30" width="50" height="50" rx="3" fill="#ffffff" opacity="0.15"/>
+  <!-- Package tape -->
+  <rect x="47" y="25" width="6" height="60" fill="#ffffff" opacity="0.5"/>
+  <rect x="20" y="52" width="60" height="6" fill="#ffffff" opacity="0.5"/>
+  <!-- Delivery arrow -->
+  <path d="M70 55 L85 55 M80 48 L85 55 L80 62" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
+
+
+
+

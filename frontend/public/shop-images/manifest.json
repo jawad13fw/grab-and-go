@@ -1,0 +1,219 @@
+{
+  "generatedAt": "2026-03-21T20:54:49.676Z",
+  "totalRequested": 30,
+  "totalDownloaded": 30,
+  "totalFailed": 0,
+  "images": [
+    {
+      "id": "grocery-01",
+      "category": "grocery",
+      "query": "grocery-store,interior,shelves",
+      "file": "/shop-images/grocery-01.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "grocery-02",
+      "category": "grocery",
+      "query": "supermarket,aisle,produce",
+      "file": "/shop-images/grocery-02.jpg",
+      "bytes": 205765
+    },
+    {
+      "id": "grocery-03",
+      "category": "grocery",
+      "query": "fresh-produce,market",
+      "file": "/shop-images/grocery-03.jpg",
+      "bytes": 131812
+    },
+    {
+      "id": "grocery-04",
+      "category": "grocery",
+      "query": "organic-store,fruits,vegetables",
+      "file": "/shop-images/grocery-04.jpg",
+      "bytes": 47520
+    },
+    {
+      "id": "grocery-05",
+      "category": "grocery",
+      "query": "food-market,storefront",
+      "file": "/shop-images/grocery-05.jpg",
+      "bytes": 50563
+    },
+    {
+      "id": "bakery-01",
+      "category": "bakery",
+      "query": "bakery,store,interior",
+      "file": "/shop-images/bakery-01.jpg",
+      "bytes": 127364
+    },
+    {
+      "id": "bakery-02",
+      "category": "bakery",
+      "query": "bread,pastry,shop",
+      "file": "/shop-images/bakery-02.jpg",
+      "bytes": 48253
+    },
+    {
+      "id": "bakery-03",
+      "category": "bakery",
+      "query": "dessert-shop,counter",
+      "file": "/shop-images/bakery-03.jpg",
+      "bytes": 40896
+    },
+    {
+      "id": "bakery-04",
+      "category": "bakery",
+      "query": "artisan-bread,bakery-display",
+      "file": "/shop-images/bakery-04.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "bakery-05",
+      "category": "bakery",
+      "query": "cake-shop,bakery",
+      "file": "/shop-images/bakery-05.jpg",
+      "bytes": 81053
+    },
+    {
+      "id": "pharmacy-01",
+      "category": "pharmacy",
+      "query": "pharmacy,store,interior",
+      "file": "/shop-images/pharmacy-01.jpg",
+      "bytes": 166565
+    },
+    {
+      "id": "pharmacy-02",
+      "category": "pharmacy",
+      "query": "medicine,shelves,store",
+      "file": "/shop-images/pharmacy-02.jpg",
+      "bytes": 218133
+    },
+    {
+      "id": "pharmacy-03",
+      "category": "pharmacy",
+      "query": "healthcare,drugstore",
+      "file": "/shop-images/pharmacy-03.jpg",
+      "bytes": 116342
+    },
+    {
+      "id": "pharmacy-04",
+      "category": "pharmacy",
+      "query": "medical-shop,interior",
+      "file": "/shop-images/pharmacy-04.jpg",
+      "bytes": 91052
+    },
+    {
+      "id": "pharmacy-05",
+      "category": "pharmacy",
+      "query": "chemist,store",
+      "file": "/shop-images/pharmacy-05.jpg",
+      "bytes": 142686
+    },
+    {
+      "id": "electronics-01",
+      "category": "electronics",
+      "query": "electronics-store,interior",
+      "file": "/shop-images/electronics-01.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "electronics-02",
+      "category": "electronics",
+      "query": "gadgets,shop,display",
+      "file": "/shop-images/electronics-02.jpg",
+      "bytes": 130307
+    },
+    {
+      "id": "electronics-03",
+      "category": "electronics",
+      "query": "mobile-shop,devices",
+      "file": "/shop-images/electronics-03.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "electronics-04",
+      "category": "electronics",
+      "query": "computer-store,interior",
+      "file": "/shop-images/electronics-04.jpg",
+      "bytes": 61709
+    },
+    {
+      "id": "electronics-05",
+      "category": "electronics",
+      "query": "tech-store,smartphones",
+      "file": "/shop-images/electronics-05.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "fashion-01",
+      "category": "fashion",
+      "query": "fashion-store,interior",
+      "file": "/shop-images/fashion-01.jpg",
+      "bytes": 101479
+    },
+    {
+      "id": "fashion-02",
+      "category": "fashion",
+      "query": "clothing-boutique,shop",
+      "file": "/shop-images/fashion-02.jpg",
+      "bytes": 188750
+    },
+    {
+      "id": "fashion-03",
+      "category": "fashion",
+      "query": "apparel-store,racks",
+      "file": "/shop-images/fashion-03.jpg",
+      "bytes": 225104
+    },
+    {
+      "id": "fashion-04",
+      "category": "fashion",
+      "query": "shoe-store,retail",
+      "file": "/shop-images/fashion-04.jpg",
+      "bytes": 122025
+    },
+    {
+      "id": "fashion-05",
+      "category": "fashion",
+      "query": "streetwear-store",
+      "file": "/shop-images/fashion-05.jpg",
+      "bytes": 43158
+    },
+    {
+      "id": "flowers-01",
+      "category": "flowers",
+      "query": "flower-shop,storefront",
+      "file": "/shop-images/flowers-01.jpg",
+      "bytes": 206281
+    },
+    {
+      "id": "flowers-02",
+      "category": "flowers",
+      "query": "florist,interior,flowers",
+      "file": "/shop-images/flowers-02.jpg",
+      "bytes": 101605
+    },
+    {
+      "id": "flowers-03",
+      "category": "flowers",
+      "query": "gift-shop,flowers",
+      "file": "/shop-images/flowers-03.jpg",
+      "bytes": 162264
+    },
+    {
+      "id": "flowers-04",
+      "category": "flowers",
+      "query": "bouquet-store,floral",
+      "file": "/shop-images/flowers-04.jpg",
+      "bytes": 185158
+    },
+    {
+      "id": "flowers-05",
+      "category": "flowers",
+      "query": "floral-boutique",
+      "file": "/shop-images/flowers-05.jpg",
+      "bytes": 56902
+    }
+  ],
+  "failed": []
+}

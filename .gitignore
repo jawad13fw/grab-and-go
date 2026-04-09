@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Build artifacts
+frontend/build/
+
+# Environment files
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.qoder/
+
+# Runtime uploads/cache
+backend/uploads/
+backend/data/

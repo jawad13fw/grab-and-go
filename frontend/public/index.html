@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+    <meta name="theme-color" content="#10b981" />
+    <meta name="color-scheme" content="light" />
+    <meta
+      name="description"
+      content="Grab & Go - Multi-vendor marketplace delivering every shop in your city to your door. Order from grocery stores, pharmacies, bakeries, electronics and more."
+    />
+    <meta name="keywords" content="delivery, marketplace, grocery, pharmacy, food delivery, local shops" />
+    <meta name="author" content="Grab & Go" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Performance optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    
+    <!-- PWA -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <title>Grab & Go - Fast Local Delivery</title>
+    
+    <!-- Critical CSS inline for faster first paint -->
+    <style>
+      /* Critical CSS for initial render */
+      html { scroll-behavior: smooth; }
+      body { 
+        margin: 0; 
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: rgb(248, 250, 252);
+      }
+      #root { min-height: 100vh; }
+      /* Prevent FOUC */
+      .loading { opacity: 0; }
+      .loaded { opacity: 1; transition: opacity 0.3s; }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

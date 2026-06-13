@@ -117,8 +117,10 @@ router.post('/webhook', async (req, res) => {
   }
 });
 
+
 // All routes below require authentication.
 router.use(authMiddleware);
+
 
 // Step 1: Create payment intent (card checkout).
 router.post('/create-payment-intent', async (req, res) => {
@@ -164,7 +166,7 @@ router.post('/create-payment-intent', async (req, res) => {
   }
 });
 
-// Step 2: Confirm order (after payment confirmation or for COD/wallet).
+// Step 2: Confirm order (after payment confirmation or for COD).
 router.post('/', validateCreateOrder, async (req, res) => {
   let reservedStock = [];
   let verifiedPaymentIntentId = null;
@@ -181,6 +183,8 @@ router.post('/', validateCreateOrder, async (req, res) => {
       paymentIntentId,
       promoCode
     } = req.body;
+
+
 
     const products = items?.map((i) => ({ productId: i.id, quantity: i.quantity || 1 })) || [];
 
@@ -261,7 +265,6 @@ router.post('/', validateCreateOrder, async (req, res) => {
     // Verify payment for card transactions.
     let paymentStatus = 'pending';
     let stripePaymentId = null;
-
     if (paymentMethod === 'card') {
       if (!stripe) {
         return res.status(503).json({
@@ -412,9 +415,9 @@ router.post('/', validateCreateOrder, async (req, res) => {
 
     const paymentMessage = paymentMethod === 'card'
       ? 'Payment verified. Order placed successfully.'
-      : paymentMethod === 'cod'
-        ? 'Order placed successfully. Pay on delivery.'
-        : 'Order placed successfully. Payment is pending.';
+      : 'Order placed successfully. Pay on delivery.';
+
+    const paymentRedirect = null;
 
     return res.json({
       success: true,
@@ -425,7 +428,8 @@ router.post('/', validateCreateOrder, async (req, res) => {
         total: order.total,
         status: order.status,
         payment: order.payment
-      }
+      },
+      paymentRedirect
     });
   } catch (err) {
     await rollbackStock(reservedStock);

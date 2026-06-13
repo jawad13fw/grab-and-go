@@ -3,6 +3,7 @@ import { authMiddleware } from '../middleware/auth.js';
 import { User } from '../models/User.js';
 import { Order } from '../models/Order.js';
 import { Product } from '../models/Product.js';
+import { Shop } from '../models/Shop.js';
 import { getRecommendations } from '../services/aiService.js';
 import mongoose from 'mongoose';
 
@@ -17,11 +18,30 @@ router.get('/', authMiddleware, async (req, res) => {
     try {
         const userId = req.user.id;
 
+        const activeShopIds = await Shop.distinct('id', { isActive: true });
+        if (!activeShopIds || activeShopIds.length === 0) {
+            return res.json([]);
+        }
+        const activeShopIdSet = new Set(activeShopIds);
+
         // 1. Check Cache
         const cached = recommendationCache.get(userId);
         if (cached && (Date.now() - cached.timestamp < CACHE_TTL)) {
-            console.log(`Returning cached AI recommendations for user ${userId}`);
-            return res.json(cached.products);
+            const cachedIds = (cached.products || []).map((product) => product.id).filter(Boolean);
+            if (cachedIds.length > 0) {
+                const validCachedProducts = await Product.find({
+                    id: { $in: cachedIds },
+                    isAvailable: true,
+                    shopId: { $in: activeShopIds }
+                });
+
+                if (validCachedProducts.length === cachedIds.length) {
+                    const validMap = new Map(validCachedProducts.map((product) => [product.id, product]));
+                    const sortedCached = cachedIds.map((id) => validMap.get(id)).filter(Boolean);
+                    console.log(`Returning cached AI recommendations for user ${userId}`);
+                    return res.json(sortedCached);
+                }
+            }
         }
 
         // 2. Fetch User & History
@@ -42,7 +62,7 @@ router.get('/', authMiddleware, async (req, res) => {
             for (const item of order.items) {
                 // Fetch product category
                 const product = await Product.findOne({ id: item.productId });
-                if (product) {
+                if (product && activeShopIdSet.has(product.shopId)) {
                     purchasedItems.push({
                         itemName: product.name,
                         category: product.category,
@@ -71,10 +91,11 @@ router.get('/', authMiddleware, async (req, res) => {
 
         // 3. Fetch Diverse Catalog Sample for AI
         // We send top-rated and trending products, plus some from their favorite categories
-        let catalogQuery = { isAvailable: true };
+        let catalogQuery = { isAvailable: true, shopId: { $in: activeShopIds } };
         if (userContext.favoriteCategories.length > 0) {
             catalogQuery = {
                 isAvailable: true,
+                shopId: { $in: activeShopIds },
                 $or: [
                     { category: { $in: userContext.favoriteCategories } },
                     { rating: { $gte: 4.0 } }
@@ -89,7 +110,7 @@ router.get('/', authMiddleware, async (req, res) => {
         // If no products available for catalog, use fallback immediately
         if (!catalogSample || catalogSample.length === 0) {
             console.log('No products available for recommendations');
-            const fallbackProducts = await Product.find({ isAvailable: true })
+            const fallbackProducts = await Product.find({ isAvailable: true, shopId: { $in: activeShopIds } })
                 .sort({ rating: -1, reviews: -1 })
                 .limit(8);
             return res.json(fallbackProducts);
@@ -113,6 +134,7 @@ router.get('/', authMiddleware, async (req, res) => {
                 // Get products from favorite categories
                 const categoryProducts = await Product.find({
                     isAvailable: true,
+                    shopId: { $in: activeShopIds },
                     category: { $in: userContext.favoriteCategories }
                 }).sort({ rating: -1, reviews: -1 }).limit(4);
                 
@@ -121,7 +143,7 @@ router.get('/', authMiddleware, async (req, res) => {
             
             // Fill remaining slots with popular products
             if (fallbackProducts.length < 8) {
-                const popularProducts = await Product.find({ isAvailable: true })
+                const popularProducts = await Product.find({ isAvailable: true, shopId: { $in: activeShopIds } })
                     .sort({ rating: -1, reviews: -1, createdAt: -1 })
                     .limit(8 - fallbackProducts.length);
                 
@@ -135,12 +157,36 @@ router.get('/', authMiddleware, async (req, res) => {
         }
 
         // 6. Fetch full recommended product objects
-        const finalProducts = await Product.find({ id: { $in: recommendedProductIds } });
+        const uniqueRecommendedIds = [...new Set(recommendedProductIds || [])].filter(Boolean);
+        let sortedProducts = [];
 
-        // Sort to match AI's exact ordered list
-        const sortedProducts = finalProducts.sort(
-            (a, b) => recommendedProductIds.indexOf(a.id) - recommendedProductIds.indexOf(b.id)
-        );
+        if (uniqueRecommendedIds.length > 0) {
+            const finalProducts = await Product.find({
+                id: { $in: uniqueRecommendedIds },
+                isAvailable: true,
+                shopId: { $in: activeShopIds }
+            });
+            const finalMap = new Map(finalProducts.map((product) => [product.id, product]));
+            sortedProducts = uniqueRecommendedIds.map((id) => finalMap.get(id)).filter(Boolean);
+        }
+
+        if (sortedProducts.length < 8) {
+            const existingIds = sortedProducts.map((product) => product.id);
+            const extraQuery = {
+                isAvailable: true,
+                shopId: { $in: activeShopIds }
+            };
+
+            if (existingIds.length > 0) {
+                extraQuery.id = { $nin: existingIds };
+            }
+
+            const extraProducts = await Product.find(extraQuery)
+                .sort({ rating: -1, reviews: -1, createdAt: -1 })
+                .limit(8 - sortedProducts.length);
+
+            sortedProducts = [...sortedProducts, ...extraProducts];
+        }
 
         // 7. Save to Cache
         recommendationCache.set(userId, {

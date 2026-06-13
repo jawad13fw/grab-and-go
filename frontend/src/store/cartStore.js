@@ -8,12 +8,6 @@ const getErrMsg = (error, fallback) => {
   return parsed.message || fallback;
 };
 
-const calculateItemTotal = (price, quantity, variants = []) => {
-  const safeVariants = variants || [];
-  const variantPrice = safeVariants.reduce((sum, v) => sum + (v?.priceAdjustment || 0), 0);
-  return ((price || 0) + variantPrice) * (quantity || 0);
-};
-
 const useCartStore = create(
   persist(
     devtools((set, get) => ({
@@ -99,7 +93,12 @@ const useCartStore = create(
         } catch (error) {
           const msg = getErrMsg(error, 'Failed to add item to cart. Please try again.');
           set({ error: msg, isSynced: false });
-          return { success: false, error: msg };
+          const status = error.response?.status || error.parsedError?.status;
+          return {
+            success: false,
+            error: msg,
+            authRequired: status === 401,
+          };
         } finally {
           set({ isLoading: false });
         }

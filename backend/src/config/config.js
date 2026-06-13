@@ -85,6 +85,19 @@ if (!STRIPE_WEBHOOK_SECRET && process.env.NODE_ENV === 'production') {
   console.error('❌ WARNING: STRIPE_WEBHOOK_SECRET not set in production');
 }
 
+// JazzCash Configuration (Hosted Checkout)
+const JAZZCASH_MERCHANT_ID = process.env.JAZZCASH_MERCHANT_ID;
+const JAZZCASH_PASSWORD = process.env.JAZZCASH_PASSWORD;
+const JAZZCASH_INTEGRITY_SALT = process.env.JAZZCASH_INTEGRITY_SALT;
+const JAZZCASH_ENV = (process.env.JAZZCASH_ENV || 'sandbox').toLowerCase();
+const JAZZCASH_GATEWAY_URL = process.env.JAZZCASH_GATEWAY_URL || (
+  JAZZCASH_ENV === 'live'
+    ? 'https://payments.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchantform/'
+    : 'https://sandbox.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchantform/'
+);
+const JAZZCASH_TXN_TYPE = process.env.JAZZCASH_TXN_TYPE || 'MWALLET';
+const JAZZCASH_CURRENCY = (process.env.JAZZCASH_CURRENCY || 'PKR').toUpperCase();
+
 // Export configuration
 export const config = {
   // Environment
@@ -107,6 +120,14 @@ export const config = {
   STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET,
   STRIPE_CURRENCY: (process.env.STRIPE_CURRENCY || 'pkr').toLowerCase(),
+  JAZZCASH_MERCHANT_ID,
+  JAZZCASH_PASSWORD,
+  JAZZCASH_INTEGRITY_SALT,
+  JAZZCASH_ENV,
+  JAZZCASH_GATEWAY_URL,
+  JAZZCASH_TXN_TYPE,
+  JAZZCASH_CURRENCY,
+  JAZZCASH_RETURN_URL: process.env.JAZZCASH_RETURN_URL || `${process.env.API_BASE_URL || `http://localhost:${process.env.PORT || '4000'}`}/api/checkout/jazzcash/return`,
   
   // Images (frontend should mostly use URLs coming from the database)
   DEFAULT_PRODUCT_IMAGE_URL: process.env.DEFAULT_PRODUCT_IMAGE_URL || 'https://via.placeholder.com/300x200?text=Product',

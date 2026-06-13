@@ -143,7 +143,7 @@ const validateCreateOrder = [
     .isArray({ min: 1 }).withMessage('At least one product is required'),
   body('paymentMethod')
     .optional()
-    .isIn(['card', 'cash', 'wallet', 'cod']).withMessage('Invalid payment method'),
+    .isIn(['card', 'cod']).withMessage('Invalid payment method'),
   handleValidationErrors
 ];
 

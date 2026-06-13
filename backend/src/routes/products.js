@@ -4,6 +4,7 @@ import { Product, Shop } from '../models/index.js';
 import { config } from '../config/config.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { validateShopId, validateProductId, validatePagination } from '../middleware/validation.js';
+import { createSearchQuery, normalizeSearchQuery, sortSearchResults } from '../utils/search.js';
 
 const router = Router();
 
@@ -13,16 +14,13 @@ router.get('/search', validatePagination, async (req, res) => {
     const { q, category, shopId, minPrice, maxPrice, page = 1, limit = 12 } = req.query;
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
+    const terms = normalizeSearchQuery(q);
     
     let query = { isAvailable: true };
     
     // Text search
     if (q) {
-      query.$or = [
-        { name: { $regex: q, $options: 'i' } },
-        { description: { $regex: q, $options: 'i' } },
-        { category: { $regex: q, $options: 'i' } }
-      ];
+      Object.assign(query, createSearchQuery(q, ['name', 'description', 'category', 'tags', 'shopName']));
     }
     
     // Category filter
@@ -42,18 +40,23 @@ router.get('/search', validatePagination, async (req, res) => {
       if (maxPrice) query.price.$lte = parseFloat(maxPrice);
     }
     
-    // Get total count for pagination metadata
-    const total = await Product.countDocuments(query);
+    let products = await Product.find(query).sort({ createdAt: -1 });
+
+    if (q) {
+      products = sortSearchResults(products, terms, ['name', 'description', 'category', 'tags', 'shopName']);
+    }
+
+    const total = products.length;
     const totalPages = Math.ceil(total / limitNum);
-    
-    // Get paginated results
-    const products = await Product.find(query)
-      .skip((pageNum - 1) * limitNum)
-      .limit(limitNum)
-      .sort({ createdAt: -1 });
+    const paginatedProducts = q
+      ? products.slice((pageNum - 1) * limitNum, pageNum * limitNum)
+      : await Product.find(query)
+          .skip((pageNum - 1) * limitNum)
+          .limit(limitNum)
+          .sort({ createdAt: -1 });
     
     res.json({
-      products,
+      products: q ? paginatedProducts : paginatedProducts,
       pagination: {
         currentPage: pageNum,
         totalPages,
@@ -62,7 +65,7 @@ router.get('/search', validatePagination, async (req, res) => {
         hasNextPage: pageNum < totalPages,
         hasPrevPage: pageNum > 1
       },
-      searchQuery: q || null
+      searchQuery: terms.join(' ') || null
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

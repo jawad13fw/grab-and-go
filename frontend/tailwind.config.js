@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class', // Enable dark mode with class strategy
   theme: {
     extend: {
       colors: {
@@ -37,8 +38,6 @@ module.exports = {
     },
   },
   plugins: [],
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  },
+  // `purge` was replaced by `content` in Tailwind v3. We keep
+  // only the `content` field above for compatibility.
 };

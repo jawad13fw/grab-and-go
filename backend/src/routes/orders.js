@@ -165,10 +165,10 @@ router.post('/', authMiddleware, validateCreateOrder, orderLimiter, async (req, 
     // Determine payment status based on payment method
     const payMethod = paymentMethod || 'card';
 
-    if (payMethod === 'card') {
+    if (payMethod === 'card' || payMethod === 'jazzcash') {
       return res.status(400).json({
         success: false,
-        message: 'Card payments must be created through the secure checkout flow.'
+        message: 'Online payments must be created through the secure checkout flow.'
       });
     }
 

@@ -63,6 +63,11 @@ export const adminApi = {
   getRiderLocations: () => api.get('/api/admin/rider-locations').then((r) => r.data),
 };
 
+export const contentApi = {
+  list: () => api.get('/api/admin/content').then((r) => r.data),
+  upsert: (type, content) => api.patch('/api/admin/content', { type, content }).then((r) => r.data),
+};
+
 export const deliveryRequestsApi = {
   list: () => api.get('/api/delivery-requests').then((r) => r.data),
   create: (body) => api.post('/api/delivery-requests', body).then((r) => r.data),

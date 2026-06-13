@@ -84,7 +84,17 @@ const IMAGE_OVERRIDES = {
   'vehari-groc-rgs-17': 'https://prema.pk/wp-content/uploads/2019/08/milk-estore-1-450x450.png',
   'vehari-groc-rgs-18': 'https://alfatah.pk/cdn/shop/files/afp-000115679.png?v=1690208249&width=1946',
   'vehari-groc-rgs-19': 'https://cdn.bazaar.technology/live/images/product/2babda9e-8661-4482-b71f-96cd1034d523.webp',
-  'vehari-groc-rgs-20': 'https://adamscheese.shop/wp-content/uploads/2020/01/17_original-600x600.jpeg'
+  'vehari-groc-rgs-20': 'https://adamscheese.shop/wp-content/uploads/2020/01/17_original-600x600.jpeg',
+  'vehari-groc-rgs-21': 'https://hallans.co.uk/wp-content/uploads/2013/09/8961003010521.jpg',
+  'vehari-groc-rgs-22': 'https://i0.wp.com/basicvending.com/wp-content/uploads/2021/01/ebm-sooper-biscuit.jpg?fit=1000%2C1000&ssl=1',
+  'vehari-groc-rgs-23': 'https://img06.weeecdn.com/product/image/464/351/307F3AC57856E0C8.jpeg',
+  'vehari-groc-rgs-24': 'https://static.tossdown.com/images/36d9aafb2e52c7f62f496569318fce88.jpeg',
+  'vehari-groc-rgs-25': 'https://fmbamb.com/wp-content/uploads/2024/02/dawn-butter-cakemini.jpg',
+  'vehari-groc-rgs-26': 'https://cheezbazar.com/wp-content/uploads/2025/02/candyland-now-chocolate-pack-of-24-600.jpg',
+  'vehari-groc-rgs-27': 'https://m.media-amazon.com/images/I/71Pn1adjvNL.jpg',
+  'vehari-groc-rgs-28': 'https://storage.googleapis.com/pricemandu.com/images/products/full/f3e42eb91de661acad1967d171a9ad493578fd16.jpg',
+  'vehari-groc-rgs-29': 'https://www.pakistangrocery.com/image/cache/data/grocery/Lays-Chips-Masala-45-Grams-500x500.jpg',
+  'vehari-groc-rgs-30': 'https://www.pepsnacks.com/prod/s3fs-public/2022-07/Kurukure+Image+for+Hamburger+Menu_Desktop_0.png'
 };
 
 function ensureDir(dirPath) {

@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment
+
+Copy [frontend/.env.example](frontend/.env.example) to .env and set values as needed.
+
+Required:
+- `REACT_APP_API_URL`
+
+Optional:
+- `REACT_APP_STRIPE_PUBLISHABLE_KEY`
+- `REACT_APP_JAZZCASH_ENABLED`
+- `REACT_APP_HERO_IMAGE_URL`
+- `REACT_APP_HERO_IMAGE_ALT`
+
 ## Available Scripts
 
 In the project directory, you can run:

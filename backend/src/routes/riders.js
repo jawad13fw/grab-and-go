@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import { body } from 'express-validator';
 import { Rider, Order } from '../models/index.js';
 import { authMiddleware, requireRole } from '../middleware/auth.js';
-import { validatePagination } from '../middleware/validation.js';
+import { validatePagination, handleValidationErrors } from '../middleware/validation.js';
 import { ensureRiderProfileForUser, findPrimaryRiderProfile } from '../services/riderProfiles.js';
 
 const router = Router();
@@ -80,7 +81,19 @@ router.patch('/online', authMiddleware, requireRole('Rider'), async (req, res) =
   }
 });
 
-router.post('/location', authMiddleware, requireRole('Rider'), async (req, res) => {
+router.post('/location',
+  authMiddleware,
+  requireRole('Rider'),
+  [
+    body('lat')
+      .notEmpty().withMessage('Latitude is required')
+      .isFloat({ min: -90, max: 90 }).withMessage('Invalid latitude'),
+    body('lng')
+      .notEmpty().withMessage('Longitude is required')
+      .isFloat({ min: -180, max: 180 }).withMessage('Invalid longitude'),
+    handleValidationErrors
+  ],
+  async (req, res) => {
   try {
     const { lat, lng } = req.body;
     const rider = await ensureRiderProfileForUser(req.user);

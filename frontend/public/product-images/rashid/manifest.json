@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T00:08:28.201Z",
+  "generatedAt": "2026-04-09T00:36:32.835Z",
   "totalRequested": 55,
   "totalDownloaded": 55,
   "totalFailed": 0,
@@ -168,49 +168,49 @@
       "id": "vehari-groc-rgs-21",
       "name": "LU Gala Biscuits",
       "file": "/product-images/rashid/vehari-groc-rgs-21.jpg",
-      "bytes": 40183,
-      "hash": "f74f451490c64f06a242659cfebed491f88f7595ce849de571e37f48bfd588ff",
-      "source": "https://i5-images.massmart.co.za/asr/fcf8c4e4-03d3-4c54-a246-a1bcf7b20487.0f4697913b586577eba55fc728784af2.jpeg?odnHeight=636&odnWidth=710&odnBg=FFFFFF"
+      "bytes": 21584,
+      "hash": "ba224362dc3f7360c333991efff8e085ecd8fe95eec046424eda27a800e00184",
+      "source": "https://hallans.co.uk/wp-content/uploads/2013/09/8961003010521.jpg"
     },
     {
       "id": "vehari-groc-rgs-22",
       "name": "Peek Freans Sooper",
       "file": "/product-images/rashid/vehari-groc-rgs-22.jpg",
-      "bytes": 97085,
-      "hash": "1a45e42b9742045668a62019896def32a0cd64d283a907ec3a762df3910506da",
-      "source": "https://media.naheed.pk/catalog/product/cache/2f2d0cb0c5f92580479e8350be94f387/p/k/pk1117374-2.jpg"
+      "bytes": 44252,
+      "hash": "c3443e798a31ced677048e6960067faa1167991772a37924ce28f0612ad25dad",
+      "source": "https://i0.wp.com/basicvending.com/wp-content/uploads/2021/01/ebm-sooper-biscuit.jpg?fit=1000%2C1000&ssl=1"
     },
     {
       "id": "vehari-groc-rgs-23",
       "name": "Prince Chocolate Biscuits",
       "file": "/product-images/rashid/vehari-groc-rgs-23.jpg",
-      "bytes": 835751,
-      "hash": "2a5fdb9ebc7e4a38961151cfe81451493a974ff1c119c3173dc26b201ef6b526",
-      "source": "https://bf1af2.akinoncloudcdn.com/products/2024/12/14/74507/03ee5f6d-95f2-4d63-bd2a-21fdb5e32a93_size3840_cropCenter.jpg"
+      "bytes": 106168,
+      "hash": "9d78380bc431e558c6c182ffa1f5f27907cfe3decea892bcb19c0e9d8ffbe5a2",
+      "source": "https://img06.weeecdn.com/product/image/464/351/307F3AC57856E0C8.jpeg"
     },
     {
       "id": "vehari-groc-rgs-24",
       "name": "English Biscuit Manufacturers Cake Rusk",
       "file": "/product-images/rashid/vehari-groc-rgs-24.jpg",
-      "bytes": 126381,
-      "hash": "3c5e60785e385d012826b435fd0f2c399de58179b7f743d2c38106da3b9ccc3c",
-      "source": "https://5.imimg.com/data5/SELLER/Default/2024/9/450762384/EY/CP/OI/26558154/cake-rusk-biscuits-1000x1000.jpg"
+      "bytes": 80446,
+      "hash": "b70414845d173d5caceeaef658e56ee8287c9f8ba3f866db25903c36ab410156",
+      "source": "https://static.tossdown.com/images/36d9aafb2e52c7f62f496569318fce88.jpeg"
     },
     {
       "id": "vehari-groc-rgs-25",
       "name": "Dawn Cake",
       "file": "/product-images/rashid/vehari-groc-rgs-25.jpg",
-      "bytes": 58684,
-      "hash": "67886435e876b531913b1d2dbac9127d590708f712579619b75eb6da48f5082e",
-      "source": "https://oneclickshopping.pk/wp-content/uploads/2023/08/Dawn-Mini-Plain-Cake.webp"
+      "bytes": 51478,
+      "hash": "f7f6fb46380706dcba87a76334d81e3786776aa1533209e707375448296bd087",
+      "source": "https://fmbamb.com/wp-content/uploads/2024/02/dawn-butter-cakemini.jpg"
     },
     {
       "id": "vehari-groc-rgs-26",
       "name": "Candyland Now Chocolate",
       "file": "/product-images/rashid/vehari-groc-rgs-26.jpg",
-      "bytes": 546797,
-      "hash": "5739fc4e2aab453d545c9fc98f62b580fa28a2cc840b46a1e216c6bda84fe92d",
-      "source": "https://th.bing.com/th/id/R.3dc4b8c10d9edaf810b048f32a46b6bf?rik=wC09kRZoZqXang&riu=http%3a%2f%2fyumtreats.pk%2fcdn%2fshop%2ffiles%2fNow_-_Chocolate_Bar_612703c1-d8f1-4715-b364-b39bf07c1f89.png%3fv%3d1755195313&ehk=1OojMlenqqlCKjAn7cSzt40jQU67d8z3RYkyE0WBsTk%3d&risl=&pid=ImgRaw&r=0"
+      "bytes": 27694,
+      "hash": "bc794b7417b55a10fcd8f16450714716a6dd45b69ee90f23531ec14d9e76ef5f",
+      "source": "https://cheezbazar.com/wp-content/uploads/2025/02/candyland-now-chocolate-pack-of-24-600.jpg"
     },
     {
       "id": "vehari-groc-rgs-27",
@@ -224,25 +224,25 @@
       "id": "vehari-groc-rgs-28",
       "name": "Cadbury Perk",
       "file": "/product-images/rashid/vehari-groc-rgs-28.jpg",
-      "bytes": 115609,
-      "hash": "db20d383a43f6543602d3514a5dff3127ab1528732302df39cc84961cd143cd0",
-      "source": "https://m.media-amazon.com/images/I/81osADrL4-L._SL1500_.jpg"
+      "bytes": 40637,
+      "hash": "753b6e1ed5df5ffe46883508015989209052705ce5c96058c518cdb327fbcce8",
+      "source": "https://storage.googleapis.com/pricemandu.com/images/products/full/f3e42eb91de661acad1967d171a9ad493578fd16.jpg"
     },
     {
       "id": "vehari-groc-rgs-29",
       "name": "Lays Masala Chips",
       "file": "/product-images/rashid/vehari-groc-rgs-29.jpg",
-      "bytes": 867753,
-      "hash": "cc4d0c7456945a83ce5a56b4cbfbb5666a8fae0cc682f91c337bf8956f208a03",
-      "source": "https://i5.walmartimages.com/seo/Lays-Masala-7-75oz_539ca357-3876-4c7d-8f19-a5f3baad7979.1006dc0e84a1eabc9f03d78ecfc6655a.jpeg"
+      "bytes": 115290,
+      "hash": "cd20b2cc0ad94802e8975101373dbfac36f5590a170a68856b783e42be3873e7",
+      "source": "https://www.pakistangrocery.com/image/cache/data/grocery/Lays-Chips-Masala-45-Grams-500x500.jpg"
     },
     {
       "id": "vehari-groc-rgs-30",
       "name": "Kurkure Snacks",
       "file": "/product-images/rashid/vehari-groc-rgs-30.jpg",
-      "bytes": 501470,
-      "hash": "d7f55e36be4015d877704c6f0da8653ed1ccd704de497c3f9bfedd9194b026b7",
-      "source": "https://www.pepsnacks.com/prod/s3fs-public/2023-01/Kurkure_Hamburger.jpg"
+      "bytes": 1881123,
+      "hash": "3241ca0f54c510ecd593c247000efce7d2fa39769b85c5c7478861153b7ad627",
+      "source": "https://www.pepsnacks.com/prod/s3fs-public/2022-07/Kurukure+Image+for+Hamburger+Menu_Desktop_0.png"
     },
     {
       "id": "vehari-groc-rgs-31",

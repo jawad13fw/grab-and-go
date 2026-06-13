@@ -6,7 +6,10 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "seed:test": "node src/scripts/seedTestData.js",
+    "seed:realistic": "node src/scripts/seedRealisticData.js",
+    "seed:vehari": "node src/scripts/seedMongoDB.js"
   },
   "dependencies": {
     "@google/genai": "^1.44.0",
@@ -18,11 +21,13 @@
     "express-rate-limit": "^7.1.0",
     "express-validator": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^10.1.4",
     "mongoose": "^8.0.0",
     "morgan": "^1.10.1",
     "multer": "^1.4.5-lts.1",
     "nanoid": "^5.1.5",
     "socket.io": "^4.8.1",
     "stripe": "^14.25.0"
-  }
+  },
+  "devDependencies": {}
 }

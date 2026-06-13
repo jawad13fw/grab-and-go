@@ -81,32 +81,6 @@ export async function processRefund(orderId, reason = 'Order cancelled', amount 
         }
         break;
       
-      case 'wallet':
-      case 'upi':
-        // Refund to user wallet
-        const user = await User.findOne({ id: order.userId });
-        if (!user) {
-          throw new Error('User not found for wallet refund');
-        }
-
-        if (!user.wallet) {
-          user.wallet = { balance: 0, currency: 'PKR' };
-        }
-        
-        user.wallet.balance += refundAmount;
-        await user.save();
-        
-        refundResult = {
-          refundId: `${paymentMethod}_refund_${Date.now()}`,
-          status: 'succeeded',
-          amount: refundAmount,
-          method: paymentMethod === 'upi' ? 'wallet_fallback' : 'wallet',
-          newBalance: user.wallet.balance
-        };
-        
-        console.log(`💰 ${paymentMethod.toUpperCase()} refund credited to wallet: PKR ${refundAmount} to user ${user.email}`);
-        break;
-      
       case 'cod':
         // Cash on delivery - no refund needed
         refundResult = {
@@ -118,15 +92,19 @@ export async function processRefund(orderId, reason = 'Order cancelled', amount 
         
         console.log(`💵 COD order cancelled - no refund needed: ${order.orderNumber}`);
         break;
-      
+
       default:
         throw new Error(`Unsupported payment method for refund: ${paymentMethod}`);
     }
     
     // Update order with refund completion
-    order.cancellation.refundStatus = refundResult.status === 'succeeded' || refundResult.status === 'not_applicable' 
-      ? 'completed' 
-      : 'failed';
+    const completedStatuses = ['succeeded', 'not_applicable'];
+    const inProgressStatuses = ['pending', 'processing'];
+    order.cancellation.refundStatus = completedStatuses.includes(refundResult.status)
+      ? 'completed'
+      : inProgressStatuses.includes(refundResult.status)
+        ? refundResult.status
+        : 'failed';
     order.cancellation.refundId = refundResult.refundId;
     order.cancellation.refundedAt = new Date();
     await order.save();

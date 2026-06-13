@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { nanoid } from 'nanoid';
 import { User } from '../models/index.js';
 import { authMiddleware } from '../middleware/auth.js';
+import { validateUpdateProfile, validateAddAddress } from '../middleware/validation.js';
 
 const router = Router();
 
@@ -23,7 +24,7 @@ router.get('/profile', authMiddleware, async (req, res) => {
 });
 
 // Update user profile
-router.put('/profile', authMiddleware, async (req, res) => {
+router.put('/profile', authMiddleware, validateUpdateProfile, async (req, res) => {
   try {
     const { name, phone, avatar } = req.body;
     
@@ -71,7 +72,7 @@ router.get('/addresses', authMiddleware, async (req, res) => {
 });
 
 // Add new address
-router.post('/addresses', authMiddleware, async (req, res) => {
+router.post('/addresses', authMiddleware, validateAddAddress, async (req, res) => {
   try {
     const { label, address, coordinates, instructions, isDefault } = req.body;
     
@@ -113,7 +114,7 @@ router.post('/addresses', authMiddleware, async (req, res) => {
 });
 
 // Update address
-router.put('/addresses/:addressId', authMiddleware, async (req, res) => {
+router.put('/addresses/:addressId', authMiddleware, validateAddAddress, async (req, res) => {
   try {
     const { addressId } = req.params;
     const { label, address, coordinates, instructions, isDefault } = req.body;

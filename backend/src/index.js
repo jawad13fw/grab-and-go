@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -94,20 +95,7 @@ const estimateEta = (distanceKm) => {
   return new Date(Date.now() + etaMinutes * 60 * 1000);
 };
 
-import authRoutes from './routes/auth.js';
-import categoriesRoutes from './routes/categories.js';
-import shopsRoutes from './routes/shops.js';
-import productsRoutes from './routes/products.js';
-import ordersRoutes from './routes/orders.js';
-import ridersRoutes from './routes/riders.js';
-import adminRoutes from './routes/admin.js';
-import deliveryRequestsRoutes from './routes/deliveryRequests.js';
-import checkoutRoutes from './routes/checkout.js';
-import cartRoutes from './routes/cart.js';
-import usersRoutes from './routes/users.js';
-import reviewsRoutes from './routes/reviews.js';
-import recommendationsRoutes from './routes/recommendations.js';
-import uploadRoutes from './routes/upload.js';
+import { API_MODULES } from './modules/apiModules.js';
 import { findPrimaryRiderProfile } from './services/riderProfiles.js';
 import { validateOrderStatusUpdate, applyOrderStatusTimestamp } from './services/orderStatusRules.js';
 import { connectDB } from './db/mongoose.js';
@@ -115,6 +103,7 @@ import { Rider, Order, Shop } from './models/index.js';
 import { apiLimiter, authLimiter, passwordResetLimiter, orderLimiter, reviewLimiter, cartLimiter } from './middleware/rateLimiter.js';
 import { errorHandler, notFound, handleUnhandledRejection, handleUncaughtException } from './middleware/errorHandler.js';
 import { startTimeoutChecker } from './services/orderTimeout.js';
+import { seedDatabase as seedVehariDatabase } from './scripts/seedMongoDB.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -128,6 +117,7 @@ app.use(morgan('dev'));
 app.use(cors({ origin: config.CLIENT_ORIGIN, credentials: true }));
 app.use(cookieParser());
 app.use('/api/checkout/webhook', express.raw({ type: 'application/json' }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Apply rate limiting
@@ -143,23 +133,15 @@ app.use('/api/cart', cartLimiter);
 
 app.get('/health', (_, res) => res.json({ ok: true, db: 'mongodb' }));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/categories', categoriesRoutes);
-app.use('/api/shops', shopsRoutes);
-app.use('/api/products', productsRoutes);
-app.use('/api/orders', ordersRoutes);
-app.use('/api/riders', ridersRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/delivery-requests', deliveryRequestsRoutes);
-app.use('/api/checkout', checkoutRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/users', usersRoutes);
-app.use('/api/reviews', reviewsRoutes);
-app.use('/api/recommendations', recommendationsRoutes);
-app.use('/api/upload', uploadRoutes);
+for (const moduleDef of API_MODULES) {
+  app.use(moduleDef.basePath, moduleDef.router);
+}
 
 // Serve uploaded files (Multer)
 app.use('/uploads', express.static(config.UPLOAD_DIR));
+
+// Serve shop images from the frontend public folder so backend-served UI can access them
+app.use('/shop-images', express.static(path.resolve(process.cwd(), 'frontend', 'public', 'shop-images')));
 
 // 404 handler
 app.use(notFound);
@@ -254,11 +236,20 @@ io.on('connection', (socket) => {
     }
 
     if (riderId && (lat != null || lng != null)) {
+      const parsedLat = toFiniteNumber(lat);
+      const parsedLng = toFiniteNumber(lng);
+
+      if (parsedLat === null && parsedLng === null) {
+        socket.emit('error', { message: 'Invalid rider location coordinates' });
+        return;
+      }
+
       const rider = await Rider.findOne({ id: riderId });
       if (rider) {
+        const trackingUpdatedAt = new Date();
         rider.location = {
-          lat: Number(lat) || rider.location?.lat,
-          lng: Number(lng) || rider.location?.lng
+          lat: parsedLat ?? rider.location?.lat,
+          lng: parsedLng ?? rider.location?.lng
         };
         await rider.save();
 
@@ -266,7 +257,7 @@ io.on('connection', (socket) => {
           riderId,
           orderId: orderId || null,
           location: rider.location,
-          timestamp: new Date()
+          timestamp: trackingUpdatedAt
         });
 
         // Broadcast to order room if orderId is provided
@@ -282,7 +273,7 @@ io.on('connection', (socket) => {
             order.tracking = {
               ...(order.tracking?.toObject ? order.tracking.toObject() : (order.tracking || {})),
               currentLocation: currentCoordinates || order.tracking?.currentLocation,
-              lastUpdated: new Date(),
+              lastUpdated: trackingUpdatedAt,
               distance: Number.isFinite(distance) ? Math.round(distance * 100) / 100 : order.tracking?.distance,
               eta: eta || order.tracking?.eta,
             };
@@ -291,15 +282,14 @@ io.on('connection', (socket) => {
             io.to(`order:${orderId}`).emit('rider_location', {
               riderId,
               location: rider.location,
-              timestamp: new Date()
+              timestamp: trackingUpdatedAt
             });
 
-            if (eta || Number.isFinite(distance)) {
-              io.to(`order:${orderId}`).emit('eta_update', {
-                estimatedTime: eta,
-                distance: Number.isFinite(distance) ? Math.round(distance * 100) / 100 : null,
-              });
-            }
+            io.to(`order:${orderId}`).emit('eta_update', {
+              estimatedTime: order.tracking?.eta || null,
+              distance: Number.isFinite(order.tracking?.distance) ? order.tracking.distance : null,
+              timestamp: trackingUpdatedAt,
+            });
           } else {
             socket.emit('error', { message: 'Not authorized to update location for this order' });
           }
@@ -411,15 +401,27 @@ io.on('connection', (socket) => {
 handleUncaughtException();
 
 connectDB().then(() => {
-  const server = httpServer.listen(config.PORT, () => {
-    console.log(`🚀 Server running at http://localhost:${config.PORT}`);
+  return Promise.all([
+    Shop.countDocuments(),
+    Order.countDocuments(),
+  ]).then(async ([shopCount, orderCount]) => {
+    const shouldAutoSeed = process.env.NODE_ENV !== 'production' && process.env.AUTO_SEED_VEHARI !== 'false';
+
+    if (shouldAutoSeed && (shopCount === 0 || orderCount === 0)) {
+      console.log('No Vehari seed data found. Seeding local shops and products...');
+      await seedVehariDatabase({ disconnect: false });
+    }
+
+    const server = httpServer.listen(config.PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${config.PORT}`);
+    });
+
+    // Start order timeout checker (every 5 minutes)
+    startTimeoutChecker(io, 5);
+
+    // Handle unhandled promise rejections
+    handleUnhandledRejection(server);
   });
-
-  // Start order timeout checker (every 5 minutes)
-  startTimeoutChecker(io, 5);
-
-  // Handle unhandled promise rejections
-  handleUnhandledRejection(server);
 
 }).catch((err) => {
   console.error('DB init failed:', err);

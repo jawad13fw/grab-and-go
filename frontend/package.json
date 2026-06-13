@@ -10,30 +10,46 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.13.2",
+    "axios": "^1.15.2",
     "framer-motion": "^12.23.24",
     "leaflet": "^1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.9.6",
-    "react-scripts": "5.0.1",
-    "socket.io-client": "^4.8.1",
-    "tailwindcss": "^3.4.13",
-    "web-vitals": "^2.1.4",
+    "react-router-dom": "^7.15.1",
+    "socket.io-client": "^4.8.3",
+    "tailwindcss": "^3.4.19",
     "zustand": "^5.0.8"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.28.0",
+    "postcss": "^8.5.15",
+    "vite": "^8.0.14"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"No frontend test runner configured\""
+  },
+  "overrides": {
+    "tailwindcss": {
+      "picomatch": "^2.3.2",
+      "yaml": "^2.8.3",
+      "sucrase": {
+        "brace-expansion": "^2.0.3",
+        "minimatch": "^9.0.7"
+      }
+    },
+    "socket.io-client": {
+      "engine.io-client": "^6.6.5",
+      "socket.io-parser": "^4.2.6"
+    },
+    "engine.io-client": {
+      "ws": "^8.21.0"
+    }
   },
   "browserslist": {
     "production": [

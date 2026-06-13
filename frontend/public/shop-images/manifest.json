@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-21T20:54:49.676Z",
-  "totalRequested": 30,
-  "totalDownloaded": 30,
+  "generatedAt": "2026-05-04T14:57:26.122Z",
+  "totalRequested": 10,
+  "totalDownloaded": 10,
   "totalFailed": 0,
   "images": [
     {
@@ -42,142 +42,167 @@
     {
       "id": "bakery-01",
       "category": "bakery",
-      "query": "bakery,store,interior",
+      "query": "Bites & Bakers, B1",
       "file": "/shop-images/bakery-01.jpg",
-      "bytes": 127364
+      "bytes": 877017,
+      "source": "existing-local-file",
+      "hash": "4778d93449d09bfdd08b766baedfca7d9505df1c0a8030074700b19603116a60"
     },
     {
       "id": "bakery-02",
       "category": "bakery",
-      "query": "bread,pastry,shop",
+      "query": "Kehkashan Plus Sweets & Bakers",
       "file": "/shop-images/bakery-02.jpg",
-      "bytes": 48253
+      "bytes": 877087,
+      "source": "existing-local-file",
+      "hash": "ec833632ae1acb75f3bdbf396721c10604749850315843504a2b34e60e970a27"
     },
     {
       "id": "bakery-03",
       "category": "bakery",
-      "query": "dessert-shop,counter",
+      "query": "Khurshid Sweet and Bakers",
       "file": "/shop-images/bakery-03.jpg",
-      "bytes": 40896
+      "bytes": 878152,
+      "source": "existing-local-file",
+      "hash": "98664f0391c8fe9777c8615b2f28b2adf518ca9e600e68a21ece5141a90550c5"
     },
     {
       "id": "bakery-04",
       "category": "bakery",
-      "query": "artisan-bread,bakery-display",
+      "query": "Tahiri Sweets & Bakers",
       "file": "/shop-images/bakery-04.jpg",
-      "bytes": 225104
+      "bytes": 24687,
+      "source": "existing-local-file",
+      "hash": "e1f6448cf57a399b90829936d302d491313c6b62acc5b04fb02b272f3cb899f9"
     },
     {
       "id": "bakery-05",
       "category": "bakery",
-      "query": "cake-shop,bakery",
+      "query": "Hamdard Sweets & Bakers",
       "file": "/shop-images/bakery-05.jpg",
-      "bytes": 81053
+      "bytes": 792683,
+      "source": "existing-local-file",
+      "hash": "6379a975f5f0f6af0af814c5c4ade439598d26fd8805739bb789c64372103ba8"
     },
     {
       "id": "pharmacy-01",
       "category": "pharmacy",
-      "query": "pharmacy,store,interior",
+      "query": "Nishter Medical Store Vehari pharmacy storefront",
       "file": "/shop-images/pharmacy-01.jpg",
-      "bytes": 166565
+      "bytes": 120409,
+      "source": "https://medicalstudy.pk/wp-content/uploads/2024/10/Nishter-Medical-College-Admission-1024x614.png"
     },
     {
       "id": "pharmacy-02",
       "category": "pharmacy",
-      "query": "medicine,shelves,store",
+      "query": "Mian Pharmacy Vehari 24/7 pharmacy storefront",
       "file": "/shop-images/pharmacy-02.jpg",
-      "bytes": 218133
+      "bytes": 12482,
+      "source": "https://s3.amazonaws.com/media.mixrank.com/profilepic/674dbbb41d5baa4b830f605da02705e8"
     },
     {
       "id": "pharmacy-03",
       "category": "pharmacy",
-      "query": "healthcare,drugstore",
+      "query": "Rehmat Pharmacy Vehari drugstore interior",
       "file": "/shop-images/pharmacy-03.jpg",
-      "bytes": 116342
+      "bytes": 74519,
+      "source": "https://images.mapmory.com/w2-white-black/aefb851be64af7aa49e82848d7c5adec.jpg"
     },
     {
       "id": "pharmacy-04",
       "category": "pharmacy",
-      "query": "medical-shop,interior",
+      "query": "Punjab Medical Store Vehari pharmacy shop front",
       "file": "/shop-images/pharmacy-04.jpg",
-      "bytes": 91052
+      "bytes": 129053,
+      "source": "https://yt3.googleusercontent.com/m3FUkZvJ4kom2suIbzhqjwmnsheiCPQgv7L16uXDBStTRRnXiMcCc2tMYwboKTuYr12lml_B=s900-c-k-c0x00ffffff-no-rj"
     },
     {
       "id": "pharmacy-05",
       "category": "pharmacy",
-      "query": "chemist,store",
+      "query": "Azeem Pharmacy Vehari medical store shelves",
       "file": "/shop-images/pharmacy-05.jpg",
-      "bytes": 142686
+      "bytes": 49686,
+      "source": "https://alchetron.com/cdn/vehari-5fcfd75c-8f33-4339-bbdb-c1fd2031f30-resize-750.jpeg"
     },
     {
       "id": "electronics-01",
       "category": "electronics",
-      "query": "electronics-store,interior",
+      "query": "National Electric Store Vehari electronics storefront showroom",
       "file": "/shop-images/electronics-01.jpg",
-      "bytes": 225104
+      "bytes": 1052006,
+      "source": "https://nationalelectronicsstore.com/wp-content/uploads/2025/04/Main-Banner-AC-01-1.jpg"
     },
     {
       "id": "electronics-02",
       "category": "electronics",
-      "query": "gadgets,shop,display",
+      "query": "Haier Store Vehari appliances showroom electronics shop",
       "file": "/shop-images/electronics-02.jpg",
-      "bytes": 130307
+      "bytes": 211578,
+      "source": "https://corporate.haier-europe.com/wp-content/uploads/2024/05/1Y0A5061-1024x683.jpg"
     },
     {
       "id": "electronics-03",
       "category": "electronics",
-      "query": "mobile-shop,devices",
+      "query": "Madina Electronics Vehari store interior electronics",
       "file": "/shop-images/electronics-03.jpg",
-      "bytes": 225104
+      "bytes": 124884,
+      "source": "https://atkdir.com/wp-content/uploads/2019/05/al-madina-1024x576.jpg"
     },
     {
       "id": "electronics-04",
       "category": "electronics",
-      "query": "computer-store,interior",
+      "query": "Emaan Electrons Vehari TV and appliance showroom",
       "file": "/shop-images/electronics-04.jpg",
-      "bytes": 61709
+      "bytes": 43726,
+      "source": "https://yt3.googleusercontent.com/a6jwNDQeA_veDo2SXytB3i4nlKSG48UEyRfzovnYp7vzhmlsYH0fwhPTKNSsjeyiyDt-uOxPnA=s900-c-k-c0x00ffffff-no-rj"
     },
     {
       "id": "electronics-05",
       "category": "electronics",
-      "query": "tech-store,smartphones",
+      "query": "Power Tech Solar Energy CCTV Vehari showroom electronics",
       "file": "/shop-images/electronics-05.jpg",
-      "bytes": 225104
+      "bytes": 47261,
+      "source": "https://powertechenergysolutions.com/wp-content/uploads/2022/10/Logo.jpg"
     },
     {
       "id": "fashion-01",
       "category": "fashion",
-      "query": "fashion-store,interior",
+      "query": "UrbanGirl Vehari clothing boutique storefront",
       "file": "/shop-images/fashion-01.jpg",
-      "bytes": 101479
+      "bytes": 887363,
+      "source": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3566293703155545799"
     },
     {
       "id": "fashion-02",
       "category": "fashion",
-      "query": "clothing-boutique,shop",
+      "query": "Qadri Boutique Center Vehari boutique shop",
       "file": "/shop-images/fashion-02.jpg",
-      "bytes": 188750
+      "bytes": 586712,
+      "source": "https://www.travelmypakistan.com/wp-content/uploads/2014/08/District-Vehari.jpg"
     },
     {
       "id": "fashion-03",
       "category": "fashion",
-      "query": "apparel-store,racks",
+      "query": "Rang Mehal Vehari clothing store interior",
       "file": "/shop-images/fashion-03.jpg",
-      "bytes": 225104
+      "bytes": 88110,
+      "source": "https://i.pinimg.com/originals/eb/aa/3d/ebaa3d9283433a346e8647aec3ff533b.jpg"
     },
     {
       "id": "fashion-04",
       "category": "fashion",
-      "query": "shoe-store,retail",
+      "query": "Asim Jofa Tehsil Bazaar Vehari clothing branch",
       "file": "/shop-images/fashion-04.jpg",
-      "bytes": 122025
+      "bytes": 221268,
+      "source": "https://pkclothing.pk/cdn/shop/files/23EEDCAC-733E-44F0-8FD3-7EAC295D4580_720x.jpg?v=1732630669"
     },
     {
       "id": "fashion-05",
       "category": "fashion",
-      "query": "streetwear-store",
+      "query": "WearUp men clothing store Vehari",
       "file": "/shop-images/fashion-05.jpg",
-      "bytes": 43158
+      "bytes": 90375,
+      "source": "https://wearup.store/cdn/shop/files/01_a61331f4-9010-43d8-9343-3d58ef06bf99.jpg?v=1719152170&width=800"
     },
     {
       "id": "flowers-01",
@@ -213,7 +238,473 @@
       "query": "floral-boutique",
       "file": "/shop-images/flowers-05.jpg",
       "bytes": 56902
+    },
+    {
+      "id": "electronics-06",
+      "category": "electronics",
+      "query": "Ruba Digital RD Vehari electronics store interior",
+      "file": "/shop-images/electronics-06.jpg",
+      "bytes": 84426,
+      "source": "https://www.careerjoin.com/wp-content/uploads/2023/04/ruba-digital-logo-11-april-2023.png"
+    },
+    {
+      "id": "electronics-07",
+      "category": "electronics",
+      "query": "Crescent Electric Store Vehari electronics showroom",
+      "file": "/shop-images/electronics-07.jpg",
+      "bytes": 269842,
+      "source": "https://bombayelectricstore.com/image/cache/catalog/banner1-1140x380.jpg"
+    },
+    {
+      "id": "electronics-08",
+      "category": "electronics",
+      "query": "Surmawala Vehari electronics accessories store",
+      "file": "/shop-images/electronics-08.jpg",
+      "bytes": 205398,
+      "source": "https://www.surmawala.pk/cdn/shop/files/BF-Electronics-Slider-D.jpg?v=1732876481&width=1500"
+    },
+    {
+      "id": "electronics-09",
+      "category": "electronics",
+      "query": "Shalimar Electronics Vehari home electronics store",
+      "file": "/shop-images/electronics-09.jpg",
+      "bytes": 75887,
+      "source": "https://yt3.googleusercontent.com/ei1P7coUvBcMbKyQ6xKJjZTEq5bJhqxqovECJSMvpMCReQFLnKLR3gvDnn4kLWYC_Cgzwgq7hA=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "electronics-10",
+      "category": "electronics",
+      "query": "Almumtaz Group Of Electronics Vehari showroom",
+      "file": "/shop-images/electronics-10.jpg",
+      "bytes": 60224,
+      "source": "https://www.almumtaz.com.pk/wp-content/uploads/2022/12/Al-Mumtaz-group-of-electronics-1200x245.png"
+    },
+    {
+      "id": "electronics-11",
+      "category": "electronics",
+      "query": "Rehman Electronics Computers Vehari shop interior",
+      "file": "/shop-images/electronics-11.jpg",
+      "bytes": 78151,
+      "source": "https://live.staticflickr.com/7460/16545829831_5000ce4954_o.jpg"
+    },
+    {
+      "id": "fashion-06",
+      "category": "fashion",
+      "query": "Malik Garments Vehari garments store",
+      "file": "/shop-images/fashion-06.jpg",
+      "bytes": 244915,
+      "source": "https://tasneem-sadaf.com/cdn/shop/files/IMG_9186.jpg?v=1710807462&width=990"
+    },
+    {
+      "id": "fashion-07",
+      "category": "fashion",
+      "query": "Tip Top Garments Vehari clothing shop",
+      "file": "/shop-images/fashion-07.jpg",
+      "bytes": 42894,
+      "source": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100067642234277"
+    },
+    {
+      "id": "fashion-08",
+      "category": "fashion",
+      "query": "Musa Brands Collection Vehari fashion store",
+      "file": "/shop-images/fashion-08.jpg",
+      "bytes": 49983,
+      "source": "https://ateliermusa.com/wp-content/uploads/2024/01/Sale-11-560x747.jpg"
+    },
+    {
+      "id": "fashion-09",
+      "category": "fashion",
+      "query": "MG Garments Vehari garments shop",
+      "file": "/shop-images/fashion-09.jpg",
+      "bytes": 299446,
+      "source": "https://mggarmentsltd.com/wp-content/uploads/2023/10/h-scaled.jpg"
+    },
+    {
+      "id": "fashion-10",
+      "category": "fashion",
+      "query": "Haseeb Garments kids clothing store Vehari",
+      "file": "/shop-images/fashion-10.jpg",
+      "bytes": 42747,
+      "source": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100067642234277"
+    },
+    {
+      "id": "fashion-11",
+      "category": "fashion",
+      "query": "Resham Cloth House Vehari cloth house storefront",
+      "file": "/shop-images/fashion-11.jpg",
+      "bytes": 202049,
+      "source": "https://mehreenmirza.com/cdn/shop/files/JN6A1421_2b044c4e-e31e-444b-933c-74fb45d46631.jpg?v=1701423021&width=823"
+    },
+    {
+      "id": "fashion-12",
+      "category": "fashion",
+      "query": "Usman Cloth House Vehari cloth house storefront",
+      "file": "/shop-images/fashion-12.jpg",
+      "bytes": 887466,
+      "source": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3717781442346066598"
+    },
+    {
+      "id": "fashion-13",
+      "category": "fashion",
+      "query": "Fair Cut Price Shop Vehari fabric cut piece shop",
+      "file": "/shop-images/fashion-13.jpg",
+      "bytes": 51803,
+      "source": "https://i.pinimg.com/736x/03/36/eb/0336ebf67aae27cc60f38d033dfa049a.jpg"
+    },
+    {
+      "id": "fashion-14",
+      "category": "fashion",
+      "query": "Fizan Garments General Store Vehari clothing store",
+      "file": "/shop-images/fashion-14.jpg",
+      "bytes": 335432,
+      "source": "https://store.walx.co.uk/wp-content/uploads/Lime-Green-Back-Pack-5.jpg"
+    },
+    {
+      "id": "fashion-15",
+      "category": "fashion",
+      "query": "AR Clothes Vehari clothing store",
+      "file": "/shop-images/fashion-15.jpg",
+      "bytes": 103868,
+      "source": "https://brandsgallary.com/wp-content/uploads/2021/03/61-742x1024.webp"
+    },
+    {
+      "id": "fashion-16",
+      "category": "fashion",
+      "query": "New Ehtisham Garments Vehari garments shop",
+      "file": "/shop-images/fashion-16.jpg",
+      "bytes": 37694,
+      "source": "https://d2liqplnt17rh6.cloudfront.net/coverImages/abf16d9f-d610-4a07-95a8-e016aae1c517-92.jpeg"
+    },
+    {
+      "id": "fashion-17",
+      "category": "fashion",
+      "query": "New National Fashion House Vehari fashion house storefront",
+      "file": "/shop-images/fashion-17.jpg",
+      "bytes": 676807,
+      "source": "https://cascavelle.mu/wp-content/uploads/2023/06/Fashion-House-1.jpg"
+    },
+    {
+      "id": "fashion-18",
+      "category": "fashion",
+      "query": "Marvi Garments Uniform Vehari school uniform store",
+      "file": "/shop-images/fashion-18.jpg",
+      "bytes": 110986,
+      "source": "https://th.bing.com/th/id/R.99f231e81711791a0d58db3089bfdc42?rik=HCkFGWUA%2bNxu6A&riu=http%3a%2f%2fwww.e-khadigarments.com%2fimages%2fservices%2fschool-uniform.jpg&ehk=OLIEwA90g2lwTzohOpWw7urNr3QA7QM%2fhCrlf%2f0Mz5Y%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "pharmacy-06",
+      "category": "pharmacy",
+      "query": "Faisal Medical Hall Vehari pharmacy counter",
+      "file": "/shop-images/pharmacy-06.jpg",
+      "bytes": 37055,
+      "source": "https://linktr.ee/og/image/faisalhospital.jpg"
+    },
+    {
+      "id": "pharmacy-07",
+      "category": "pharmacy",
+      "query": "MM Pharmacy Vehari small pharmacy storefront",
+      "file": "/shop-images/pharmacy-07.jpg",
+      "bytes": 471633,
+      "source": "https://mmpharmacy.com.pk/wp-content/uploads/2023/10/ser3.jpg"
+    },
+    {
+      "id": "pharmacy-08",
+      "category": "pharmacy",
+      "query": "Khushi Pharmacy Vehari local medical store",
+      "file": "/shop-images/pharmacy-08.jpg",
+      "bytes": 10860,
+      "source": "https://media.licdn.com/dms/image/v2/D4D03AQEIP-XWtSOnUw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1689773801204?e=2147483647&v=beta&t=q1u1nAQvizA4R0BXr21m41LMM3hM_SWWs1G6Y5dZZS4"
+    },
+    {
+      "id": "pharmacy-09",
+      "category": "pharmacy",
+      "query": "Usman Pharmacy Vehari drugstore exterior",
+      "file": "/shop-images/pharmacy-09.jpg",
+      "bytes": 217956,
+      "source": "https://c8.alamy.com/comp/D4MCG9/usman-kurea-pakistan-pakistan-pharmacy-D4MCG9.jpg"
+    },
+    {
+      "id": "pharmacy-11",
+      "category": "pharmacy",
+      "query": "ASIF MEDICAL STORE Vehari pharmacy shelves",
+      "file": "/shop-images/pharmacy-11.jpg",
+      "bytes": 71341,
+      "source": "https://www.sultanmedicalcenter.com/wp-content/uploads/2024/04/af8605bf-d476-47b8-a7ee-af1e16d24833-1024x743.jpg"
+    },
+    {
+      "id": "pharmacy-12",
+      "category": "pharmacy",
+      "query": "Sunny Medical Store Vehari pharmacy interior",
+      "file": "/shop-images/pharmacy-12.jpg",
+      "bytes": 498349,
+      "source": "https://sunny-medical.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-20-at-4.46.05-PM-1.png"
+    },
+    {
+      "id": "pharmacy-13",
+      "category": "pharmacy",
+      "query": "Ramzan Medical Store Vehari 24/7 pharmacy",
+      "file": "/shop-images/pharmacy-13.jpg",
+      "bytes": 71299,
+      "source": "https://imgv2-1-f.scribdassets.com/img/document/694869467/original/0a07ed1dd0/1722840069?v=1"
+    },
+    {
+      "id": "pharmacy-15",
+      "category": "pharmacy",
+      "query": "Doctor Pharmacy Vehari medical store",
+      "file": "/shop-images/pharmacy-15.jpg",
+      "bytes": 28097,
+      "source": "https://www.pharmacy.pitt.edu/sites/default/files/styles/grid_style/public/grid-img/360x290-doctorpharmacy-explore-faculty.jpg?h=3cd3976d&itok=zdChRrw2"
+    },
+    {
+      "id": "pharmacy-16",
+      "category": "pharmacy",
+      "query": "Al Karim Pharmacy Vehari pharmacy storefront",
+      "file": "/shop-images/pharmacy-16.jpg",
+      "bytes": 86845,
+      "source": "https://rasmaska.com/wp-content/uploads/2016/12/Karim-Pharmacy-800x800.jpg"
+    },
+    {
+      "id": "pharmacy-14",
+      "category": "pharmacy",
+      "query": "Life Line Pharmacy Vehari medical shop",
+      "file": "/shop-images/pharmacy-14.jpg",
+      "bytes": 258719,
+      "source": "https://lifelinepharma.weebly.com/uploads/1/3/1/2/131293549/img-1909_orig.jpg"
+    },
+    {
+      "id": "bakery-06",
+      "category": "bakery",
+      "query": "Anbala Bakers & Sweets",
+      "file": "/shop-images/bakery-06.jpg",
+      "bytes": 50982,
+      "source": "existing-local-file",
+      "hash": "59f2b5a9799bb97b2e061f30961f4936b22fe63fd7ffbed7c223c7d1db59ba60"
+    },
+    {
+      "id": "bakery-07",
+      "category": "bakery",
+      "query": "Umer Bakers and General Store",
+      "file": "/shop-images/bakery-07.jpg",
+      "bytes": 82772,
+      "source": "https://img.restaurantguru.com/r157-Om-Soham-Bakers-General-Store-food.jpg",
+      "hash": "0dffb4d214fed56418959edc28105a56820426fe1b02338247e9f7c88c1a8219"
+    },
+    {
+      "id": "bakery-08",
+      "category": "bakery",
+      "query": "Zaid Sweets & Bakers",
+      "file": "/shop-images/bakery-08.jpg",
+      "bytes": 878019,
+      "source": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3650541317772925081",
+      "hash": "2a54c95cdab126ee58e6172af63f61a5cd4973c40f38941d7a681644fa918162"
+    },
+    {
+      "id": "bakery-09",
+      "category": "bakery",
+      "query": "Fauji Bakers",
+      "file": "/shop-images/bakery-09.jpg",
+      "bytes": 103687,
+      "source": "https://static-01.daraz.pk/p/336f03ad38d8a036ecb3cbbae0c4c211.jpg",
+      "hash": "a2100c035a35671d96111bbf6acacc401fc8d340219150d7f052ce41db4f88a5"
+    },
+    {
+      "id": "bakery-10",
+      "category": "bakery",
+      "query": "New Pakeeza Rewari Sweets & Bakers",
+      "file": "/shop-images/bakery-10.jpg",
+      "bytes": 76555,
+      "source": "https://rewarisweetmart.pk/cdn/shop/files/RewariSweetMart_10.jpg?v=1724316064&width=600",
+      "hash": "12f8dd861e9005e5f31513edce20f74580010a9a8586ecd7a54cc5b320b31603"
     }
   ],
-  "failed": []
+  "failed": [],
+  "pharmacy": [
+    {
+      "id": "pharmacy-01",
+      "name": "Nishter Medical Store",
+      "file": "/shop-images/pharmacy-01.jpg",
+      "source": "https://medicalstudy.pk/wp-content/uploads/2024/10/Nishter-Medical-College-Admission-1024x614.png",
+      "bytes": 120409
+    },
+    {
+      "id": "pharmacy-02",
+      "name": "Mian Pharmacy",
+      "file": "/shop-images/pharmacy-02.jpg",
+      "source": "https://s3.amazonaws.com/media.mixrank.com/profilepic/674dbbb41d5baa4b830f605da02705e8",
+      "bytes": 12482
+    },
+    {
+      "id": "pharmacy-03",
+      "name": "Rehmat Pharmacy Vehari",
+      "file": "/shop-images/pharmacy-03.jpg",
+      "source": "https://images.mapmory.com/w2-white-black/aefb851be64af7aa49e82848d7c5adec.jpg",
+      "bytes": 74519
+    },
+    {
+      "id": "pharmacy-04",
+      "name": "Punjab Medical Store",
+      "file": "/shop-images/pharmacy-04.jpg",
+      "source": "https://yt3.googleusercontent.com/m3FUkZvJ4kom2suIbzhqjwmnsheiCPQgv7L16uXDBStTRRnXiMcCc2tMYwboKTuYr12lml_B=s900-c-k-c0x00ffffff-no-rj",
+      "bytes": 129053
+    },
+    {
+      "id": "pharmacy-05",
+      "name": "Azeem Pharmacy Vehari",
+      "file": "/shop-images/pharmacy-05.jpg",
+      "source": "https://alchetron.com/cdn/vehari-5fcfd75c-8f33-4339-bbdb-c1fd2031f30-resize-750.jpeg",
+      "bytes": 49686
+    },
+    {
+      "id": "pharmacy-06",
+      "name": "Faisal Medical Hall",
+      "file": "/shop-images/pharmacy-06.jpg",
+      "source": "https://linktr.ee/og/image/faisalhospital.jpg",
+      "bytes": 37055
+    },
+    {
+      "id": "pharmacy-07",
+      "name": "MM Pharmacy",
+      "file": "/shop-images/pharmacy-07.jpg",
+      "source": "https://mmpharmacy.com.pk/wp-content/uploads/2023/10/ser3.jpg",
+      "bytes": 471633
+    },
+    {
+      "id": "pharmacy-08",
+      "name": "Khushi Pharmacy",
+      "file": "/shop-images/pharmacy-08.jpg",
+      "source": "https://media.licdn.com/dms/image/v2/D4D03AQEIP-XWtSOnUw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1689773801204?e=2147483647&v=beta&t=q1u1nAQvizA4R0BXr21m41LMM3hM_SWWs1G6Y5dZZS4",
+      "bytes": 10860
+    },
+    {
+      "id": "pharmacy-09",
+      "name": "Usman Pharmacy",
+      "file": "/shop-images/pharmacy-09.jpg",
+      "source": "https://c8.alamy.com/comp/D4MCG9/usman-kurea-pakistan-pakistan-pharmacy-D4MCG9.jpg",
+      "bytes": 217956
+    },
+    {
+      "id": "pharmacy-11",
+      "name": "ASIF MEDICAL STORE",
+      "file": "/shop-images/pharmacy-11.jpg",
+      "source": "https://www.sultanmedicalcenter.com/wp-content/uploads/2024/04/af8605bf-d476-47b8-a7ee-af1e16d24833-1024x743.jpg",
+      "bytes": 71341
+    },
+    {
+      "id": "pharmacy-12",
+      "name": "Sunny Medical Store",
+      "file": "/shop-images/pharmacy-12.jpg",
+      "source": "https://sunny-medical.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-20-at-4.46.05-PM-1.png",
+      "bytes": 498349
+    },
+    {
+      "id": "pharmacy-13",
+      "name": "Ramzan Medical Store",
+      "file": "/shop-images/pharmacy-13.jpg",
+      "source": "https://imgv2-1-f.scribdassets.com/img/document/694869467/original/0a07ed1dd0/1722840069?v=1",
+      "bytes": 71299
+    },
+    {
+      "id": "pharmacy-14",
+      "name": "Life Line Pharmacy",
+      "file": "/shop-images/pharmacy-14.jpg",
+      "source": "https://lifelinepharma.weebly.com/uploads/1/3/1/2/131293549/img-1909_orig.jpg",
+      "bytes": 258719
+    },
+    {
+      "id": "pharmacy-15",
+      "name": "Doctor Pharmacy",
+      "file": "/shop-images/pharmacy-15.jpg",
+      "source": "https://www.pharmacy.pitt.edu/sites/default/files/styles/grid_style/public/grid-img/360x290-doctorpharmacy-explore-faculty.jpg?h=3cd3976d&itok=zdChRrw2",
+      "bytes": 28097
+    },
+    {
+      "id": "pharmacy-16",
+      "name": "Al Karim Pharmacy",
+      "file": "/shop-images/pharmacy-16.jpg",
+      "source": "https://rasmaska.com/wp-content/uploads/2016/12/Karim-Pharmacy-800x800.jpg",
+      "bytes": 86845
+    }
+  ],
+  "bakery": [
+    {
+      "id": "bakery-01",
+      "name": "Bites & Bakers, B1",
+      "file": "/shop-images/bakery-01.jpg",
+      "source": "existing-local-file",
+      "bytes": 877017,
+      "hash": "4778d93449d09bfdd08b766baedfca7d9505df1c0a8030074700b19603116a60"
+    },
+    {
+      "id": "bakery-02",
+      "name": "Kehkashan Plus Sweets & Bakers",
+      "file": "/shop-images/bakery-02.jpg",
+      "source": "existing-local-file",
+      "bytes": 877087,
+      "hash": "ec833632ae1acb75f3bdbf396721c10604749850315843504a2b34e60e970a27"
+    },
+    {
+      "id": "bakery-03",
+      "name": "Khurshid Sweet and Bakers",
+      "file": "/shop-images/bakery-03.jpg",
+      "source": "existing-local-file",
+      "bytes": 878152,
+      "hash": "98664f0391c8fe9777c8615b2f28b2adf518ca9e600e68a21ece5141a90550c5"
+    },
+    {
+      "id": "bakery-04",
+      "name": "Tahiri Sweets & Bakers",
+      "file": "/shop-images/bakery-04.jpg",
+      "source": "existing-local-file",
+      "bytes": 24687,
+      "hash": "e1f6448cf57a399b90829936d302d491313c6b62acc5b04fb02b272f3cb899f9"
+    },
+    {
+      "id": "bakery-05",
+      "name": "Hamdard Sweets & Bakers",
+      "file": "/shop-images/bakery-05.jpg",
+      "source": "existing-local-file",
+      "bytes": 792683,
+      "hash": "6379a975f5f0f6af0af814c5c4ade439598d26fd8805739bb789c64372103ba8"
+    },
+    {
+      "id": "bakery-06",
+      "name": "Anbala Bakers & Sweets",
+      "file": "/shop-images/bakery-06.jpg",
+      "source": "existing-local-file",
+      "bytes": 50982,
+      "hash": "59f2b5a9799bb97b2e061f30961f4936b22fe63fd7ffbed7c223c7d1db59ba60"
+    },
+    {
+      "id": "bakery-07",
+      "name": "Umer Bakers and General Store",
+      "file": "/shop-images/bakery-07.jpg",
+      "source": "https://img.restaurantguru.com/r157-Om-Soham-Bakers-General-Store-food.jpg",
+      "bytes": 82772,
+      "hash": "0dffb4d214fed56418959edc28105a56820426fe1b02338247e9f7c88c1a8219"
+    },
+    {
+      "id": "bakery-08",
+      "name": "Zaid Sweets & Bakers",
+      "file": "/shop-images/bakery-08.jpg",
+      "source": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3650541317772925081",
+      "bytes": 878019,
+      "hash": "2a54c95cdab126ee58e6172af63f61a5cd4973c40f38941d7a681644fa918162"
+    },
+    {
+      "id": "bakery-09",
+      "name": "Fauji Bakers",
+      "file": "/shop-images/bakery-09.jpg",
+      "source": "https://static-01.daraz.pk/p/336f03ad38d8a036ecb3cbbae0c4c211.jpg",
+      "bytes": 103687,
+      "hash": "a2100c035a35671d96111bbf6acacc401fc8d340219150d7f052ce41db4f88a5"
+    },
+    {
+      "id": "bakery-10",
+      "name": "New Pakeeza Rewari Sweets & Bakers",
+      "file": "/shop-images/bakery-10.jpg",
+      "source": "https://rewarisweetmart.pk/cdn/shop/files/RewariSweetMart_10.jpg?v=1724316064&width=600",
+      "bytes": 76555,
+      "hash": "12f8dd861e9005e5f31513edce20f74580010a9a8586ecd7a54cc5b320b31603"
+    }
+  ]
 }

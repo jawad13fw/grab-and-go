@@ -28,6 +28,14 @@
   text-rendering: optimizeLegibility;
 }
 
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -41,7 +49,69 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: rgb(248, 250, 252);
+  color: rgb(15, 23, 42);
   overflow-x: hidden;
+}
+
+html.dark body {
+  /* Use a slightly lighter, warmer dark background and brighter text for better contrast */
+  background-color: #0b1220; /* previously very near-black */
+  color: #e6eef8; /* brighter, softer white for readability */
+}
+
+/* Improve contrast for commonly used muted text/borders in dark mode */
+html.dark .text-slate-300,
+html.dark .text-slate-400 {
+  color: #cbd5e6 !important; /* a bit brighter than Tailwind's slate-300 */
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-600 {
+  color: #94a3b8 !important; /* stronger mid-tone for good readability */
+}
+
+html.dark .border-slate-700,
+html.dark .border-slate-800 {
+  border-color: #334155 !important; /* slightly lighter border for separation */
+}
+
+/* Slightly lift dark surfaces so cards and panels stand out from the page background */
+html.dark .bg-slate-950,
+html.dark .bg-slate-900 {
+  background-color: #071029 !important;
+}
+
+/* Make links and primary actions more visible in dark mode */
+html.dark a,
+html.dark .text-primary {
+  color: #7ee7c7 !important; /* lighter primary tint on dark backgrounds */
+}
+
+/* Additional overrides to increase contrast for common utility classes */
+html.dark .text-slate-900,
+html.dark .text-slate-800 {
+  color: #e6eef8 !important; /* brighter heading/strong text */
+}
+
+html.dark .text-slate-700 {
+  color: #cbd5e6 !important; /* strong body text */
+}
+
+html.dark .text-slate-600 {
+  color: #9fb0c8 !important; /* secondary text */
+}
+
+/* Make plain white surfaces less bright in dark mode so text contrasts better */
+html.dark .bg-white,
+html.dark .bg-white\/90,
+html.dark .bg-white\/95 {
+  background-color: #07122a !important;
+}
+
+/* Ensure muted borders and separators are visible on dark background */
+html.dark .border-slate-200,
+html.dark .border-slate-300 {
+  border-color: #334155 !important;
 }
 
 #root {

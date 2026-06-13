@@ -31,7 +31,7 @@ const useCatalogStore = create((set, get) => ({
      *   Silently re-fetches in the background if cache is stale.
      */
     fetchHomeData: async () => {
-        const { shops, products, categories, aiRecommendations, shopsAt, productsAt, categoriesAt, aiRecommendationsAt } = get();
+        const { shops, products, categories, shopsAt, productsAt, categoriesAt, aiRecommendationsAt } = get();
 
         const hasCache = shops.length > 0 || products.length > 0 || categories.length > 0;
         const allFresh = isFresh(shopsAt) && isFresh(productsAt) && isFresh(categoriesAt) && isFresh(aiRecommendationsAt);

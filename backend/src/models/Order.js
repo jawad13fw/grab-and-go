@@ -94,7 +94,7 @@ const pricingSchema = new mongoose.Schema({
 const paymentSchema = new mongoose.Schema({
   method: { 
     type: String, 
-    enum: ['cod', 'card', 'wallet', 'upi'],
+    enum: ['cod', 'card', 'wallet', 'upi', 'jazzcash'],
     default: 'cod'
   },
   status: { 

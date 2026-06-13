@@ -25,9 +25,14 @@ router.post('/login', validateLogin, async (req, res) => {
     const { email, password } = req.body;
     const normalizedEmail = (email || '').toLowerCase().trim();
 
+    const invalidCredentials = {
+      success: false,
+      message: 'Invalid email or password.'
+    };
+
     const user = await User.findOne({ email: normalizedEmail });
     if (!user) {
-      return res.status(401).json({ success: false, message: 'User not found. Please check your email or register.' });
+      return res.status(401).json(invalidCredentials);
     }
 
     let isValidPassword = false;
@@ -36,7 +41,7 @@ router.post('/login', validateLogin, async (req, res) => {
     }
 
     if (!isValidPassword) {
-      return res.status(401).json({ success: false, message: 'Incorrect password' });
+      return res.status(401).json(invalidCredentials);
     }
 
     const token = jwt.sign({ id: user.id, role: user.role }, config.JWT_SECRET, { expiresIn: config.JWT_EXPIRES_IN });
@@ -117,8 +122,7 @@ router.post('/register', validateRegister, async (req, res) => {
 // Registration confirmation functionality
 const sendConfirmationEmail = async (user) => {
   // In a real app, integrate with an email service like SendGrid, Nodemailer, etc.
-  console.log(`REGISTRATION CONFIRMATION: Account created for ${user.email} (${user.name}), role: ${user.role}`);
-  console.log(`A confirmation email should be sent to ${user.email} with a verification link.`);
+  console.log(`Registration confirmation queued for user ${user.id} (${user.role})`);
   
   // This would typically include a verification token
   // await emailService.sendConfirmation(user.email, verificationToken);
@@ -147,7 +151,7 @@ router.post('/forgot-password', validateForgotPassword, async (req, res) => {
     // In a real app, send email with reset link
     // await sendPasswordResetEmail(user.email, resetToken);
     
-    console.log(`Password reset requested for ${email}`);
+    console.log(`Password reset requested for user ${user.id}`);
     
     res.json({ success: true, message: 'If an account exists with this email, a reset link has been sent.' });
   } catch (err) {

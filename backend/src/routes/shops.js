@@ -4,6 +4,7 @@ import { Shop } from '../models/index.js';
 import { config } from '../config/config.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { validateShopId, validatePagination } from '../middleware/validation.js';
+import { createSearchQuery, normalizeSearchQuery, sortSearchResults } from '../utils/search.js';
 
 const router = Router();
 
@@ -13,17 +14,13 @@ router.get('/search', validatePagination, async (req, res) => {
     const { q, category, minOrder, page = 1, limit = 12 } = req.query;
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
+    const terms = normalizeSearchQuery(q);
     
     let query = { isActive: true };
     
     // Text search
     if (q) {
-      query.$or = [
-        { name: { $regex: q, $options: 'i' } },
-        { description: { $regex: q, $options: 'i' } },
-        { category: { $regex: q, $options: 'i' } },
-        { address: { $regex: q, $options: 'i' } }
-      ];
+      Object.assign(query, createSearchQuery(q, ['name', 'description', 'category', 'address', 'tags']));
     }
     
     // Category filter
@@ -36,18 +33,23 @@ router.get('/search', validatePagination, async (req, res) => {
       query.minOrder = { $lte: parseFloat(minOrder) };
     }
     
-    // Get total count for pagination metadata
-    const total = await Shop.countDocuments(query);
+    let shops = await Shop.find(query).sort({ createdAt: -1 });
+
+    if (q) {
+      shops = sortSearchResults(shops, terms, ['name', 'description', 'category', 'address', 'tags']);
+    }
+
+    const total = shops.length;
     const totalPages = Math.ceil(total / limitNum);
-    
-    // Get paginated results
-    const shops = await Shop.find(query)
-      .skip((pageNum - 1) * limitNum)
-      .limit(limitNum)
-      .sort({ createdAt: -1 });
+    const paginatedShops = q
+      ? shops.slice((pageNum - 1) * limitNum, pageNum * limitNum)
+      : await Shop.find(query)
+          .skip((pageNum - 1) * limitNum)
+          .limit(limitNum)
+          .sort({ createdAt: -1 });
     
     res.json({
-      shops,
+      shops: q ? paginatedShops : paginatedShops,
       pagination: {
         currentPage: pageNum,
         totalPages,
@@ -56,7 +58,7 @@ router.get('/search', validatePagination, async (req, res) => {
         hasNextPage: pageNum < totalPages,
         hasPrevPage: pageNum > 1
       },
-      searchQuery: q || null
+      searchQuery: terms.join(' ') || null
     });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Unable to search shops right now. Please try again.', error: { status: 500, code: 'INTERNAL_ERROR', title: 'Search failed', hint: 'Try refreshing the page or simplifying your search.' } });

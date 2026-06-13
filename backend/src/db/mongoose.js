@@ -11,19 +11,49 @@ const PERSISTENT_DB_PATH = path.resolve(__dirname, '..', '..', '.mongo-data');
 
 let memoryServer = null;
 
+/**
+ * Remove stale mongod.lock file that can prevent the memory server from starting
+ * when the previous process was killed without cleanup.
+ */
+function cleanStaleLockFile() {
+  try {
+    const lockFile = path.join(PERSISTENT_DB_PATH, 'mongod.lock');
+    if (fs.existsSync(lockFile)) {
+      // Always remove the lock file — if another mongod is using this dbPath,
+      // the MongoMemoryServer.create() call will fail and we'll fall back to temp mode.
+      fs.unlinkSync(lockFile);
+      console.log('Removed mongod.lock file from persistent DB path');
+    }
+  } catch {
+    // Ignore cleanup failures (e.g. file in use by another process)
+  }
+}
+
 async function startMemoryServer({ useTemp = false } = {}) {
   if (!memoryServer) {
     const forceTemp = process.env.DEV_MEM_DB_TMP === '1';
     const tempMode = useTemp || forceTemp;
 
     // Use a temp dbPath in dev when requested, otherwise keep persistent data.
-    if (!tempMode) fs.mkdirSync(PERSISTENT_DB_PATH, { recursive: true });
+    if (!tempMode) {
+      fs.mkdirSync(PERSISTENT_DB_PATH, { recursive: true });
+      cleanStaleLockFile();
+    }
     const instanceOpts = { dbName: DEFAULT_DB };
     if (!tempMode) instanceOpts.dbPath = PERSISTENT_DB_PATH;
 
-    memoryServer = await MongoMemoryServer.create({
-      instance: instanceOpts,
-    });
+    try {
+      memoryServer = await MongoMemoryServer.create({
+        instance: instanceOpts,
+      });
+    } catch (createErr) {
+      // If using persistent path fails (e.g., locked DB), throw so caller can try temp
+      if (!tempMode) {
+        throw createErr;
+      }
+      // For temp mode, re-throw with clearer message
+      throw new Error(`Failed to start temp MongoDB: ${createErr.message}`);
+    }
   }
 
   return memoryServer.getUri();
@@ -60,6 +90,8 @@ export async function connectDB() {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    console.log('Local MongoDB not available. Starting in-memory MongoDB...');
+
     // First try persistent local path; if it's locked/busy, retry with temp mode.
     try {
       const memoryUri = await startMemoryServer({ useTemp: false });

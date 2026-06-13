@@ -60,7 +60,24 @@ INSTRUCTIONS:
         });
 
         const resultText = response.text();
-        const productIds = JSON.parse(resultText);
+
+        // Gemini sometimes wraps JSON in markdown code blocks or adds extra text.
+        // Extract the JSON array from the response.
+        let jsonStr = resultText.trim();
+
+        // Remove markdown code fences: ```json ... ``` or ``` ... ```
+        const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
+        if (codeBlockMatch) {
+            jsonStr = codeBlockMatch[1].trim();
+        }
+
+        // If there's text after the JSON array, extract just the array
+        const arrayMatch = jsonStr.match(/\[[\s\S]*\]/);
+        if (arrayMatch) {
+            jsonStr = arrayMatch[0];
+        }
+
+        const productIds = JSON.parse(jsonStr);
 
         // Ensure we are returning an array
         if (!Array.isArray(productIds)) {

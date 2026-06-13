@@ -11,7 +11,7 @@ L.Icon.Default.mergeOptions({
 });
 
 export const defaultMapSettings = {
-  center: [37.7749, -122.4194],
+  center: [30.0444, 72.3565],
   zoom: 13,
 };
 

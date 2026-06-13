@@ -189,15 +189,19 @@ router.post('/', validateCreateOrder, async (req, res) => {
     const products = items?.map((i) => ({ productId: i.id, quantity: i.quantity || 1 })) || [];
 
     // Calculate actual total from products.
-    let total = Number(amount) || 0;
+    let productSubtotal = 0;
     if (products.length) {
       const productIds = products.map((p) => p.productId);
       const prods = await Product.find({ id: { $in: productIds } });
-      total = products.reduce((sum, p) => {
+      productSubtotal = products.reduce((sum, p) => {
         const prod = prods.find((x) => x.id === p.productId);
         return sum + (prod?.price || 0) * (p.quantity || 1);
       }, 0);
     }
+
+    // Use delivery fee from request (frontend cart), fallback to 0
+    const requestDeliveryFee = Number(req.body.deliveryFee) || 0;
+    const requestTax = Number(req.body.tax) || 0;
 
     // Resolve shop ID.
     let resolvedShopId = shopId;
@@ -239,7 +243,7 @@ router.post('/', validateCreateOrder, async (req, res) => {
         });
       }
 
-      if (total < promoCodeDoc.minOrderAmount) {
+      if (productSubtotal < promoCodeDoc.minOrderAmount) {
         return res.status(400).json({
           success: false,
           message: `Minimum order amount of ${promoCodeDoc.minOrderAmount} required for this promo code`
@@ -247,7 +251,7 @@ router.post('/', validateCreateOrder, async (req, res) => {
       }
 
       if (promoCodeDoc.type === 'percentage') {
-        discount = (total * promoCodeDoc.value) / 100;
+        discount = (productSubtotal * promoCodeDoc.value) / 100;
         if (promoCodeDoc.maxDiscountAmount && discount > promoCodeDoc.maxDiscountAmount) {
           discount = promoCodeDoc.maxDiscountAmount;
         }
@@ -255,12 +259,12 @@ router.post('/', validateCreateOrder, async (req, res) => {
         discount = promoCodeDoc.value;
       }
 
-      if (discount > total) {
-        discount = total;
+      if (discount > productSubtotal) {
+        discount = productSubtotal;
       }
     }
 
-    const finalTotal = total + emergencyFee - discount;
+    const finalTotal = productSubtotal + requestDeliveryFee + requestTax + emergencyFee - discount;
 
     // Verify payment for card transactions.
     let paymentStatus = 'pending';
@@ -305,10 +309,12 @@ router.post('/', validateCreateOrder, async (req, res) => {
       }
 
       const receivedAmount = paymentIntent.amount_received || paymentIntent.amount || 0;
-      if (receivedAmount < expectedAmount) {
+      // Allow a small tolerance (5 PKR in minor units) for rounding differences
+      const TOLERANCE = 500; // 5 PKR in paisas
+      if (receivedAmount < expectedAmount - TOLERANCE) {
         return res.status(400).json({
           success: false,
-          message: 'Paid amount does not match order total.'
+          message: `Paid amount (Rs. ${(receivedAmount / 100).toFixed(0)}) does not match order total (Rs. ${(expectedAmount / 100).toFixed(0)}).`
         });
       }
 
@@ -344,9 +350,9 @@ router.post('/', validateCreateOrder, async (req, res) => {
         };
       }),
       pricing: {
-        subtotal: total,
-        deliveryFee: 0,
-        tax: 0,
+        subtotal: productSubtotal,
+        deliveryFee: requestDeliveryFee,
+        tax: requestTax,
         discount,
         emergencyFee,
         promoCode: promoCode?.toUpperCase() || null,

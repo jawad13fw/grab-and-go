@@ -1,6 +1,6 @@
 export const DEFAULT_MAP_LOCATION = {
-  lat: 37.7749,
-  lng: -122.4194,
+  lat: 30.0444,
+  lng: 72.3565,
 };
 
 function toFiniteNumber(value) {

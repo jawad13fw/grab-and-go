@@ -59,15 +59,24 @@ const AdminDashboard = () => {
         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900 mb-4">Recent Activity</h2>
           <div className="space-y-3">
-            {(stats?.recentActivity || []).map((act) => (
-              <div key={act.id} className="flex items-center justify-between rounded-2xl border border-slate-100 p-4">
-                <div>
-                  <p className="text-sm text-slate-500">{act.type}</p>
-                  <p className="font-semibold text-slate-900">{act.message}</p>
+            {(stats?.orderTrends || []).slice(-7).map((count, idx) => {
+              const label = `Day ${idx + 1}`;
+              return (
+                <div
+                  key={`${label}-${idx}`}
+                  className="flex items-center justify-between rounded-2xl border border-slate-100 p-4"
+                >
+                  <div>
+                    <p className="text-sm text-slate-500">Orders Trend</p>
+                    <p className="font-semibold text-slate-900">{label}</p>
+                  </div>
+                  <div className="text-sm text-slate-500">{count} orders</div>
                 </div>
-                <div className="text-sm text-slate-500">{new Date(act.time).toLocaleString()}</div>
-              </div>
-            ))}
+              );
+            })}
+            {!stats?.orderTrends?.length ? (
+              <div className="text-sm text-slate-500">No activity data available.</div>
+            ) : null}
           </div>
         </div>
       </div>

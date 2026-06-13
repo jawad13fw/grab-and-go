@@ -1,0 +1,209 @@
+{
+  "generatedAt": "2026-04-30T07:36:11.515Z",
+  "totalRequested": 25,
+  "totalDownloaded": 25,
+  "totalFailed": 0,
+  "images": [
+    {
+      "id": "vehari-elec-p1",
+      "name": "Samsung 43\" Smart LED TV",
+      "file": "/product-images/electronics/vehari-elec-1/vehari-elec-p1.jpg",
+      "bytes": 16946,
+      "hash": "b241f8f1172cd3a241798d403e382dcb3fe6a503aeb4f3591b34772707d627e2",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p10",
+      "name": "Samsung Soundbar (2.1 Channel)",
+      "file": "/product-images/electronics/vehari-elec-4/vehari-elec-p10.jpg",
+      "bytes": 15734,
+      "hash": "6175f410ac329371299753dcda0a0f64a2311196bfa422f78a1e864f6dd82490",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p11",
+      "name": "Solar Panel (300W)",
+      "file": "/product-images/electronics/vehari-elec-5/vehari-elec-p11.jpg",
+      "bytes": 20041,
+      "hash": "b62127765e5d4f1add23c5c4e4228120be3eb2ddc1f2138a5f824e0480a9b713",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p12",
+      "name": "CCTV Camera System (4 Channel)",
+      "file": "/product-images/electronics/vehari-elec-5/vehari-elec-p12.jpg",
+      "bytes": 25371,
+      "hash": "2c37315fdf3b4fa7c58bd0fdadfb0272b215962e54c84e7eaf6f2f79fc42a478",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p13",
+      "name": "Solar Inverter (1kVA)",
+      "file": "/product-images/electronics/vehari-elec-5/vehari-elec-p13.jpg",
+      "bytes": 263702,
+      "hash": "baace46b854fde3734f2c861082f757f414dd7bee7ea480d2353d8eed5e2bb9d",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p14",
+      "name": "Power Bank (20000mAh)",
+      "file": "/product-images/electronics/vehari-elec-6/vehari-elec-p14.jpg",
+      "bytes": 228458,
+      "hash": "43bfc4c43225a27e7fe78d9a10c69ca7bf236396f9533093780fd6c3d4a2594d",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p15",
+      "name": "Bluetooth Speaker (Portable)",
+      "file": "/product-images/electronics/vehari-elec-6/vehari-elec-p15.jpg",
+      "bytes": 14736,
+      "hash": "a89af2eec92b0e4fd366160f37737c6e51a1685a00aa9d36542fd2bf549d9d98",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p16",
+      "name": "Orient Ceiling Fan (56\")",
+      "file": "/product-images/electronics/vehari-elec-7/vehari-elec-p16.jpg",
+      "bytes": 18584,
+      "hash": "4e45ff425e869dc2207c1a265babe20d84b66ffef495603b3355082d32482050",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p17",
+      "name": "Gree Inverter AC 1 Ton",
+      "file": "/product-images/electronics/vehari-elec-7/vehari-elec-p17.jpg",
+      "bytes": 292448,
+      "hash": "5f337c1ce8a309781f203bb3edb65be4d0ac646778a8df89c9fa0cfe35f406c7",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p18",
+      "name": "Canon Printer (All-in-One)",
+      "file": "/product-images/electronics/vehari-elec-8/vehari-elec-p18.jpg",
+      "bytes": 44018,
+      "hash": "43bea6775372a03580275bd049dbbf8da20c10afd3d5384a8a0bc6ebe142cc6b",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p19",
+      "name": "UPS (1200VA)",
+      "file": "/product-images/electronics/vehari-elec-8/vehari-elec-p19.jpg",
+      "bytes": 300888,
+      "hash": "247d1cd473aa75ccfbbdd2a6557a317f0bd59434a19fa51fb2c9f15ec474a3c4",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p2",
+      "name": "Sony Home Theater System 5.1",
+      "file": "/product-images/electronics/vehari-elec-1/vehari-elec-p2.jpg",
+      "bytes": 44395,
+      "hash": "e7d0e5c3da04377962ec34f29f7335c64faa08871bde23ab3b91663a61fa51bb",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p20",
+      "name": "Electric Kettle (1.8L)",
+      "file": "/product-images/electronics/vehari-elec-9/vehari-elec-p20.jpg",
+      "bytes": 26347,
+      "hash": "e15961919b3a72bf4838bf7d1e64f46924fa5ea62b77162f098527cb025cd3e8",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p21",
+      "name": "Room Heater (2000W)",
+      "file": "/product-images/electronics/vehari-elec-9/vehari-elec-p21.jpg",
+      "bytes": 38251,
+      "hash": "4541f79d053a2b342a8ac9fd32a78d63fb3abe7cb8192021a3f3a7ff9c3dcd51",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p22",
+      "name": "Voltage Stabilizer (5kVA)",
+      "file": "/product-images/electronics/vehari-elec-10/vehari-elec-p22.jpg",
+      "bytes": 24023,
+      "hash": "177b8e1e2962cdfddf1f4ce7b5b33f280d6f6a0d7f03abe10cd88e6f705f5587",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p23",
+      "name": "Exhaust Fan (12\")",
+      "file": "/product-images/electronics/vehari-elec-10/vehari-elec-p23.jpg",
+      "bytes": 220715,
+      "hash": "b6355dd7c01a83b6ae2115d95e6dd71db4a6d2f833231d163b79763496bd842b",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p24",
+      "name": "LED Bulb Pack (10W x 4)",
+      "file": "/product-images/electronics/vehari-elec-11/vehari-elec-p24.jpg",
+      "bytes": 40110,
+      "hash": "2be7edff9d44b7006d2ccf93ed1d38200fcd84a19f568d4e946aa3cf9136cfe1",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p25",
+      "name": "Extension Cord (5 Socket)",
+      "file": "/product-images/electronics/vehari-elec-11/vehari-elec-p25.jpg",
+      "bytes": 80616,
+      "hash": "7c393aa4864c98fe7f8186e5879f140510889908f034be6503f18c73e09939b7",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p3",
+      "name": "PEL Inverter AC 1.5 Ton",
+      "file": "/product-images/electronics/vehari-elec-1/vehari-elec-p3.jpg",
+      "bytes": 214653,
+      "hash": "ea37838e1ca37136d198f086c5bc111ff77a2ababc563a8b7865e7d8dbf6d9a9",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p4",
+      "name": "Haier Refrigerator (16 cu ft)",
+      "file": "/product-images/electronics/vehari-elec-2/vehari-elec-p4.jpg",
+      "bytes": 25862,
+      "hash": "c1b6df4984bdd1ae747c0652794e5fd60ba7c7052cb5e8df5ce26a6174c5ae6c",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p5",
+      "name": "Haier Washing Machine (8kg)",
+      "file": "/product-images/electronics/vehari-elec-2/vehari-elec-p5.jpg",
+      "bytes": 91305,
+      "hash": "73602c2e6ac89f1eb6f5f0498ebedb99f03e62078b8787171ab6000a9a9fcc0a",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p6",
+      "name": "Haier Microwave Oven (30L)",
+      "file": "/product-images/electronics/vehari-elec-2/vehari-elec-p6.jpg",
+      "bytes": 66264,
+      "hash": "27d507a575435894a9d3731a678253a6712e3cb1079ec0addfbfd2252a4e7091",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p7",
+      "name": "LG 32\" LED TV",
+      "file": "/product-images/electronics/vehari-elec-3/vehari-elec-p7.jpg",
+      "bytes": 236088,
+      "hash": "09191b099f33cce75217457eadb6330b6c058c2c8a8790977f8856ca88351066",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p8",
+      "name": "Dawlance Deep Freezer (10 cu ft)",
+      "file": "/product-images/electronics/vehari-elec-3/vehari-elec-p8.jpg",
+      "bytes": 8410,
+      "hash": "5c1e6bcea63ff1b455c86f2a6e424aa0d862f57f665dd03972f7e26d73ad3ace",
+      "source": "existing-local-file"
+    },
+    {
+      "id": "vehari-elec-p9",
+      "name": "TCL 55\" 4K UHD Smart TV",
+      "file": "/product-images/electronics/vehari-elec-4/vehari-elec-p9.jpg",
+      "bytes": 164626,
+      "hash": "7c1e543fa55178e17a82416908091407d32e2d4563c47d736fc02c72438a5875",
+      "source": "existing-local-file"
+    }
+  ],
+  "failed": []
+}

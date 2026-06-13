@@ -1,0 +1,34 @@
+{
+  "downloads": {
+    "vehari-groc-h25": {
+      "source": "https://i.pinimg.com/originals/1d/17/11/1d17110e26dc0f3dea11394c72ede761.jpg",
+      "hash": "9c3fc14d1d7d5ed8ebb39ae517e6a5f6"
+    },
+    "vehari-groc-h26": {
+      "source": "https://exoticsnacks.com/cdn/shop/files/Kurkure-Masala-Munch-Chips_-90g-Kurkure-127219648_1200x1200.png?v=1740156985",
+      "hash": "3bde76ee813633507cb614d415291e3d"
+    },
+    "vehari-groc-h27": {
+      "source": "https://pictures.grocerapps.com/lgthumb/grocerapp-knorr-chicken-instant-noodles-66488adc4f6f1.jpeg",
+      "hash": "fdf5942dad77b120de092a5401600267"
+    },
+    "vehari-groc-h28": {
+      "source": "https://ecombe.nahdionline.com/media/catalog/product/l/u/lux-soap-bar-soft-touch-120-gm_1.jpg",
+      "hash": "fe27bbcecfb71fbb4fa96ca3ccb883fd"
+    },
+    "vehari-groc-h29": {
+      "source": "https://ruperhat.com/wp-content/uploads/2024/03/Surf-Excel-Washing-Powder.jpg",
+      "hash": "460754526147694fae813955c93ab5a8"
+    },
+    "vehari-groc-h30": {
+      "source": "https://pxmshare.colgatepalmolive.com/JPEG_1500/uancUm7vmFi0zLv-L9LKW.jpg",
+      "hash": "554b009ef2efe07b911b71b2299526e5"
+    }
+  },
+  "stats": {
+    "total": 30,
+    "success": 6,
+    "skip": 24,
+    "fail": 0
+  }
+}

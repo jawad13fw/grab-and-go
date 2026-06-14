@@ -6,6 +6,7 @@ import Loader from '../../components/common/Loader';
 import useRiderStore from '../../store/riderStore';
 import useAuthStore from '../../store/authStore';
 import { ridersApi, catalogApi } from '../../api/endpoints';
+import { normalizeLocation } from '../../utils/location';
 
 const riderRoutes = [
   { label: 'Dashboard', path: '/rider/dashboard' },
@@ -167,6 +168,18 @@ const AvailableOrders = () => {
                     >
                       {isAccepting ? 'Accepting...' : order.isEmergency ? 'Accept Fast Delivery' : 'Accept Order'}
                     </Button>
+                    {(() => {
+                      const coords = normalizeLocation(shop);
+                      if (!coords) return null;
+                      return (
+                        <Button
+                          variant="ghost"
+                          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`, '_blank')}
+                        >
+                          🧭 Navigate
+                        </Button>
+                      );
+                    })()}
                     <Button variant="ghost" onClick={() => navigate(`/rider/order/${order.id}/preview`)}>
                       View Details
                     </Button>

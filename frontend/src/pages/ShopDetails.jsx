@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import ProductCard from '../components/shop/ProductCard';
 import Button from '../components/common/Button';
 import RatingStars from '../components/common/RatingStars';
@@ -9,6 +10,7 @@ import useAuthStore from '../store/authStore';
 import { catalogApi } from '../api/endpoints';
 import { getShopBanner, handleImageError, SHOP_BANNER_FALLBACK } from '../utils/imageUtils';
 import AuthPromptModal from '../components/common/AuthPromptModal';
+import { normalizeLocation } from '../utils/location';
 
 const ShopDetails = () => {
   const { shopId } = useParams();
@@ -150,6 +152,44 @@ const ShopDetails = () => {
           )}
         </div>
       </section>
+
+      {/* Shop Location Map */}
+      {(() => {
+        const coords = normalizeLocation(shop);
+        if (!coords) return null;
+        return (
+          <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between p-6 pb-3">
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900">Shop Location</h2>
+                <p className="text-sm text-slate-500 mt-0.5">{shop.address}</p>
+              </div>
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-primary/5 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 transition-colors"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+                Get Directions
+              </a>
+            </div>
+            <div className="h-64 w-full">
+              <MapContainer
+                center={[coords.lat, coords.lng]}
+                zoom={15}
+                scrollWheelZoom={false}
+                style={{ height: '100%', width: '100%' }}
+              >
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap" />
+                <Marker position={[coords.lat, coords.lng]}>
+                  <Popup>{shop.name}<br />{shop.address}</Popup>
+                </Marker>
+              </MapContainer>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="space-y-4">
         <div className="flex flex-wrap items-end justify-between gap-3">

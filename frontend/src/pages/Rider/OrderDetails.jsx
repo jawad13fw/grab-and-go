@@ -72,11 +72,11 @@ const OrderDetails = () => {
 
   const riderLocation = useLiveLocation(rider?.id, rider?.location, order?.id);
   const safeRiderLocation = normalizeLocationOrDefault(riderLocation);
-  const shopPosition = normalizeLocationOrDefault(shop?.location, {
+  const shopPosition = normalizeLocationOrDefault(shop, {
     lat: safeRiderLocation.lat - 0.01,
     lng: safeRiderLocation.lng - 0.01,
   });
-  const customerPosition = normalizeLocationOrDefault(order?.deliveryAddress, {
+  const customerPosition = normalizeLocationOrDefault(order?.deliveryLocation || order, {
     lat: safeRiderLocation.lat + 0.02,
     lng: safeRiderLocation.lng + 0.02,
   });

@@ -33,7 +33,11 @@ const fetchNavbarSuggestions = async (query) => {
     ).slice(0, 5).map((p) => ({
       label: p.name,
       value: p.name,
-      meta: `Product${p.shopName ? ` · ${p.shopName}` : ''}`,
+      meta: `${p.shopName || 'Product'}`,
+      type: 'product',
+      image: p.image || null,
+      price: p.price ?? null,
+      category: p.category || '',
     }));
 
     const shopSuggestions = (shopsRes.status === 'fulfilled'
@@ -42,7 +46,10 @@ const fetchNavbarSuggestions = async (query) => {
     ).slice(0, 3).map((s) => ({
       label: s.name,
       value: s.name,
-      meta: `${s.category || 'Shop'}${s.location ? ` · ${s.location}` : ''}`,
+      meta: `${s.category || 'Shop'}${s.location ? ` \u00b7 ${s.location}` : ''}`,
+      type: 'shop',
+      image: s.image || null,
+      category: s.category || '',
     }));
 
     // Products first, then shops

@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { BuildingStorefrontIcon } from '@heroicons/react/24/solid';
 
 const normalizeSuggestion = (suggestion) => {
   if (typeof suggestion === 'string') {
-    return { label: suggestion, value: suggestion, meta: '' };
+    return { label: suggestion, value: suggestion, meta: '', type: 'generic' };
   }
 
   if (!suggestion) {
@@ -22,6 +23,10 @@ const normalizeSuggestion = (suggestion) => {
     label,
     value,
     meta: suggestion.meta || '',
+    type: suggestion.type || 'generic',
+    image: suggestion.image || null,
+    price: suggestion.price ?? null,
+    category: suggestion.category || '',
     keywords: Array.isArray(suggestion.keywords) ? suggestion.keywords : [],
   };
 };
@@ -238,11 +243,31 @@ const SearchBar = ({
           label: item,
           value: item,
           meta: 'Recent search',
+          type: 'recent',
         }));
 
     // Merge: dynamic first, then static, then recent; dedupe
     return dedupeSuggestions([...recentHits, ...dynamicHits, ...staticHits]).slice(0, 8);
   }, [normalizedQuery, normalizedSuggestions, dynamicSuggestions, recentSearches]);
+
+  // Group suggestions by type for rendering
+  const groupedSuggestions = useMemo(() => {
+    const groups = [];
+    const products = visibleSuggestions.filter((s) => s.type === 'product');
+    const shops = visibleSuggestions.filter((s) => s.type === 'shop');
+    const recents = visibleSuggestions.filter((s) => s.type === 'recent');
+    const others = visibleSuggestions.filter((s) => !['product', 'shop', 'recent'].includes(s.type));
+
+    if (recents.length > 0) groups.push({ title: 'Recent', items: recents });
+    if (products.length > 0) groups.push({ title: 'Products', items: products });
+    if (shops.length > 0) groups.push({ title: 'Shops', items: shops });
+    if (others.length > 0) groups.push({ title: '', items: others });
+
+    return groups;
+  }, [visibleSuggestions]);
+
+  // Show dropdown: when focused and either has suggestions, has a typed query, or is loading
+  const showDropdown = isOpen && (visibleSuggestions.length > 0 || normalizedQuery.length >= 2);
 
   const persistSearch = (value) => {
     const trimmedValue = value.trim();
@@ -389,6 +414,22 @@ const SearchBar = ({
     ? 'rounded-full'
     : 'rounded-2xl';
 
+  // Helper: highlight matching text
+  const HighlightMatch = ({ text, query }) => {
+    if (!query || !text) return <>{text}</>;
+    const lowerText = text.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    const idx = lowerText.indexOf(lowerQuery);
+    if (idx === -1) return <>{text}</>;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <span className="font-semibold text-slate-900">{text.slice(idx, idx + query.length)}</span>
+        {text.slice(idx + query.length)}
+      </>
+    );
+  };
+
   return (
     <div ref={rootRef} className={`relative ${className}`}>
       <div className={`flex items-center border bg-white transition-all duration-200 ${shellClasses} ${
@@ -447,40 +488,110 @@ const SearchBar = ({
         )}
       </div>
 
-      {isOpen && visibleSuggestions.length > 0 && (
-        <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/70">
-          <div id="search-suggestions" role="listbox" className="max-h-80 overflow-auto py-2">
-            {visibleSuggestions.map((suggestion, index) => (
-              <button
-                key={`${suggestion.value}-${suggestion.meta}-${index}`}
-                type="button"
-                role="option"
-                aria-selected={index === activeIndex}
-                onMouseDown={(event) => {
-                  event.preventDefault();
-                  suggestionMouseDownRef.current = true;
-                }}
-                onMouseEnter={() => setActiveIndex(index)}
-                onClick={() => selectSuggestion(suggestion)}
-                className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors ${
-                  index === activeIndex ? 'bg-primary/5 text-primary' : 'hover:bg-slate-50'
-                }`}
-              >
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-slate-900">{suggestion.label}</p>
-                  {suggestion.meta && (
-                    <p className="mt-0.5 truncate text-xs text-slate-500">{suggestion.meta}</p>
-                  )}
-                </div>
-                <span className="shrink-0 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
-                  Go
-                </span>
-              </button>
-            ))}
+      {showDropdown && (
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
+          <div id="search-suggestions" role="listbox" className="max-h-96 overflow-auto">
+            {visibleSuggestions.length === 0 && normalizedQuery.length >= 2 && isFetchingSuggestions ? (
+              <div className="px-4 py-8 text-center">
+                <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                <p className="mt-2 text-xs text-slate-400">Searching...</p>
+              </div>
+            ) : visibleSuggestions.length === 0 && normalizedQuery.length >= 2 && !isFetchingSuggestions ? (
+              <div className="px-4 py-8 text-center">
+                <p className="text-sm text-slate-500">No results for &ldquo;<span className="font-medium text-slate-700">{normalizedQuery}</span>&rdquo;</p>
+                <p className="mt-1 text-xs text-slate-400">Try a different search term</p>
+              </div>
+            ) : (
+              <div className="py-2">
+                {groupedSuggestions.map((group, gi) => (
+                  <div key={gi}>
+                    {group.title && (
+                      <div className="flex items-center gap-2 px-4 py-2">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{group.title}</span>
+                        <div className="flex-1 border-t border-slate-100" />
+                      </div>
+                    )}
+                    {group.items.map((suggestion) => {
+                      // Find global index for active state
+                      const globalIdx = visibleSuggestions.indexOf(suggestion);
+                      return (
+                        <button
+                          key={`${suggestion.value}-${suggestion.type}-${globalIdx}`}
+                          type="button"
+                          role="option"
+                          aria-selected={globalIdx === activeIndex}
+                          onMouseDown={(event) => {
+                            event.preventDefault();
+                            suggestionMouseDownRef.current = true;
+                          }}
+                          onMouseEnter={() => setActiveIndex(globalIdx)}
+                          onClick={() => selectSuggestion(suggestion)}
+                          className={`flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors ${
+                            globalIdx === activeIndex ? 'bg-primary/5' : 'hover:bg-slate-50'
+                          }`}
+                        >
+                          {/* Icon / Image */}
+                          {suggestion.type === 'recent' ? (
+                            <ClockIcon className="h-4 w-4 shrink-0 text-slate-400" />
+                          ) : suggestion.image ? (
+                            <img
+                              src={suggestion.image}
+                              alt=""
+                              className="h-10 w-10 shrink-0 rounded-lg object-cover border border-slate-100"
+                            />
+                          ) : suggestion.type === 'shop' ? (
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/5 border border-slate-100">
+                              <BuildingStorefrontIcon className="h-5 w-5 text-primary" />
+                            </div>
+                          ) : (
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-50 border border-slate-100">
+                              <MagnifyingGlassIcon className="h-4 w-4 text-slate-400" />
+                            </div>
+                          )}
+
+                          {/* Label & meta */}
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm text-slate-700">
+                              <HighlightMatch text={suggestion.label} query={normalizedQuery} />
+                            </p>
+                            {suggestion.meta && (
+                              <p className="mt-0.5 truncate text-xs text-slate-400">{suggestion.meta}</p>
+                            )}
+                          </div>
+
+                          {/* Price or category badge */}
+                          {suggestion.price != null && suggestion.type === 'product' && (
+                            <span className="shrink-0 text-sm font-semibold text-slate-900">
+                              Rs {Number(suggestion.price).toLocaleString()}
+                            </span>
+                          )}
+                          {suggestion.type === 'shop' && suggestion.category && (
+                            <span className="shrink-0 rounded-full bg-primary/5 px-2.5 py-0.5 text-xs font-medium text-primary">
+                              {suggestion.category}
+                            </span>
+                          )}
+                          {suggestion.type === 'recent' && (
+                            <ArrowRightIcon className="h-4 w-4 shrink-0 text-slate-300" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          {helperText && (
-            <div className="border-t border-slate-100 bg-slate-50 px-4 py-2 text-xs text-slate-500">
-              {helperText}
+          {visibleSuggestions.length > 0 && normalizedQuery && (
+            <div className="border-t border-slate-100 bg-slate-50/70">
+              <button
+                type="button"
+                onMouseDown={(e) => { e.preventDefault(); suggestionMouseDownRef.current = true; }}
+                onClick={() => runSearch()}
+                className="flex w-full items-center gap-2 px-4 py-2.5 text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+              >
+                <MagnifyingGlassIcon className="h-4 w-4" />
+                See all results for &ldquo;{normalizedQuery}&rdquo;
+              </button>
             </div>
           )}
         </div>

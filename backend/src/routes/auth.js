@@ -14,7 +14,7 @@ const router = Router();
 const COOKIE_OPTIONS = {
   httpOnly: true,                                   // JS can't read it
   secure: process.env.NODE_ENV === 'production',     // HTTPS only in prod
-  sameSite: 'lax',                                   // CSRF protection
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Cross-origin support
   maxAge: 7 * 24 * 60 * 60 * 1000,                  // 7 days in ms
   path: '/',
 };

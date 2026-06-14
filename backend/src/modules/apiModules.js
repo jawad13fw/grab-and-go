@@ -12,6 +12,7 @@ import usersRoutes from '../routes/users.js';
 import reviewsRoutes from '../routes/reviews.js';
 import recommendationsRoutes from '../routes/recommendations.js';
 import uploadRoutes from '../routes/upload.js';
+import seedRoutes from '../routes/seed.js';
 
 // Domain-oriented API registry to keep modules easy to discover and maintain.
 export const API_MODULES = [
@@ -29,4 +30,5 @@ export const API_MODULES = [
   { domain: 'delivery', name: 'deliveryRequests', basePath: '/api/delivery-requests', router: deliveryRequestsRoutes },
   { domain: 'admin', name: 'admin', basePath: '/api/admin', router: adminRoutes },
   { domain: 'shared', name: 'upload', basePath: '/api/upload', router: uploadRoutes },
+  { domain: 'system', name: 'seed', basePath: '/api/seed', router: seedRoutes },
 ];

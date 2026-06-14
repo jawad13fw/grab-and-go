@@ -17,7 +17,7 @@ const adminRoutes = [
 ];
 
 const AuditLogs = () => {
-  const { logs, fetchLogs, loadLogs } = useAdminStore();
+  const { logs, loadLogs } = useAdminStore();
 
   const [filter, setFilter] = useState('all');
   const [logType, setLogType] = useState('all');
@@ -26,16 +26,8 @@ const AuditLogs = () => {
     ? logs
     : (logs && Array.isArray(logs.logs) ? logs.logs : []);
 
-
-
-
   useEffect(() => {
-    fetchLogs();
-  }, [fetchLogs]);
-
-  useEffect(() => {
-    // Safety: some store versions expose `loadLogs` instead of `fetchLogs`
-    if (typeof loadLogs === 'function') loadLogs();
+    loadLogs();
   }, [loadLogs]);
 
 

@@ -4,9 +4,11 @@ import { authMiddleware, requireRole } from '../middleware/auth.js';
 import { validatePagination } from '../middleware/validation.js';
 import { autoAssignRider } from '../services/riderAssignment.js';
 import { processPendingRefunds, processRefund } from '../services/refunds.js';
+import { auditMiddleware } from '../utils/auditLogger.js';
 
 const router = Router();
 router.use(authMiddleware, requireRole('Admin'));
+router.use(auditMiddleware);
 
 const normalizeStatus = (status) => String(status || '').trim().toLowerCase();
 

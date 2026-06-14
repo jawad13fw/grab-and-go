@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import { User } from '../models/index.js';
 import { validateLogin, validateRegister, validateForgotPassword, validateResetPassword } from '../middleware/validation.js';
 import { config } from '../config/config.js';
+import { createAuditLog } from '../utils/auditLogger.js';
 
 const router = Router();
 
@@ -55,6 +56,18 @@ router.post('/login', validateLogin, async (req, res) => {
     };
 
     res.cookie('token', token, COOKIE_OPTIONS);
+
+    // Record login audit
+    createAuditLog({
+      type: 'login',
+      action: 'user_login',
+      userId: user.id,
+      ip: req.ip,
+      ipAddress: req.ip,
+      userAgent: req.headers['user-agent'],
+      details: { email: user.email, role: user.role },
+    });
+
     return res.json({ success: true, user: out });
   } catch (err) {
     console.error('Login error:', err);

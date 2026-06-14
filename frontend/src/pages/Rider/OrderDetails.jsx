@@ -22,10 +22,10 @@ const riderRoutes = [
 ];
 
 const DELIVERY_STATUSES = [
-  { key: 'arrived', label: 'Arrived at Pickup', icon: 'PIN' },
-  { key: 'picked', label: 'Picked Order', icon: 'BOX' },
-  { key: 'onway', label: 'On the Way', icon: 'CAR' },
-  { key: 'delivered', label: 'Delivered', icon: 'OK' },
+  { key: 'arrived', label: 'Arrived at Pickup', icon: '📍' },
+  { key: 'picked', label: 'Picked Order', icon: '📦' },
+  { key: 'onway', label: 'On the Way', icon: '🚗' },
+  { key: 'delivered', label: 'Delivered', icon: '✅' },
 ];
 
 const OrderDetails = () => {

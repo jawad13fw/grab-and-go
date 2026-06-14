@@ -20,11 +20,11 @@ const Support = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const reportTypes = [
-    { value: 'delivery_issue', label: 'Delivery Issue', icon: 'package' },
-    { value: 'payment', label: 'Payment/Earnings', icon: 'card' },
-    { value: 'app_issue', label: 'App Technical Issue', icon: 'phone' },
-    { value: 'safety', label: 'Safety Concern', icon: 'safety' },
-    { value: 'other', label: 'Other', icon: '?' },
+    { value: 'delivery_issue', label: 'Delivery Issue', icon: '📦' },
+    { value: 'payment', label: 'Payment/Earnings', icon: '💳' },
+    { value: 'app_issue', label: 'App Technical Issue', icon: '📱' },
+    { value: 'safety', label: 'Safety Concern', icon: '🛡️' },
+    { value: 'other', label: 'Other', icon: '❓' },
   ];
 
   const handleSubmit = (e) => {
@@ -155,7 +155,7 @@ const Support = () => {
             <Button
               variant="secondary"
               className="w-full"
-              onClick={() => window.open('tel:+15550000')}
+              onClick={() => window.open('tel:+923000000000')}
             >
               Call Support
             </Button>

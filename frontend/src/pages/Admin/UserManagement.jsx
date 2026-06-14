@@ -229,7 +229,7 @@ const UserManagement = () => {
                       </div>
                       <div>
                         <p className="text-slate-500">Rating</p>
-                        <p className="font-semibold text-slate-900">4.9</p>
+                        <p className="font-semibold text-slate-900">{(rider.rating ?? 0).toFixed(1)}</p>
                       </div>
                       <div>
                         <p className="text-slate-500">Status</p>

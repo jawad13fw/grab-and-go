@@ -2,8 +2,18 @@ import { useEffect, useState } from 'react';
 import useAuthStore from '../../store/authStore';
 import Button from '../../components/common/Button';
 import Loader from '../../components/common/Loader';
+import Sidebar from '../../components/layout/Sidebar';
 import { ordersApi, ridersApi } from '../../api/endpoints';
 import useRiderStore from '../../store/riderStore';
+
+const riderRoutes = [
+  { label: 'Dashboard', path: '/rider/dashboard' },
+  { label: 'Available Orders', path: '/rider/available-orders' },
+  { label: 'My Deliveries', path: '/rider/deliveries' },
+  { label: 'Wallet', path: '/rider/wallet' },
+  { label: 'Support', path: '/rider/support' },
+  { label: 'Profile', path: '/rider/profile' },
+];
 
 const RiderProfile = () => {
   const currentUser = useAuthStore((state) => state.currentUser);
@@ -35,7 +45,9 @@ const RiderProfile = () => {
   if (loading) return <Loader label="Loading..." />;
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[2fr,1fr]">
+    <div className="grid gap-6 lg:grid-cols-[240px,1fr]">
+      <Sidebar routes={riderRoutes} />
+      <div className="grid gap-8 lg:grid-cols-[2fr,1fr]">
       <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-2">
           <p className="text-sm uppercase tracking-[0.3em] text-primary">Rider profile</p>
@@ -92,13 +104,14 @@ const RiderProfile = () => {
           <Button className="w-full" onClick={() => window.open('https://maps.google.com', '_blank')}>
             Open navigation
           </Button>
-          <Button variant="secondary" className="w-full" onClick={() => window.open('tel:+15550000')}>
+          <Button variant="secondary" className="w-full" onClick={() => window.open('tel:+923000000000')}>
             Contact support
           </Button>
           <Button variant="ghost" className="w-full" onClick={() => window.open('mailto:support@grabgo.app')}>
             Report issue
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

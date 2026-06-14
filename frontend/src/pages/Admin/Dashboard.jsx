@@ -51,9 +51,9 @@ const AdminDashboard = () => {
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <AdminStatCard label="Total Orders" value={stats?.ordersCount || 0} />
-          <AdminStatCard label="Total Shops" value={stats?.shopsCount || 0} />
-          <AdminStatCard label="Active Riders" value={stats?.activeRiders || 0} />
+          <AdminStatCard title="Total Orders" value={stats?.ordersCount || 0} icon="📦" />
+          <AdminStatCard title="Total Shops" value={stats?.shopsCount || 0} icon="🏪" />
+          <AdminStatCard title="Active Riders" value={stats?.activeRiders || 0} icon="🛵" />
         </div>
 
         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">

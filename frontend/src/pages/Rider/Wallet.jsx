@@ -201,7 +201,7 @@ const Wallet = () => {
                             : 'bg-amber-100'
                         }`}
                     >
-                      {transaction.type === 'delivery' ? '[delivery]' : transaction.type === 'bonus' ? '[bonus]' : '[money]'}
+                      {transaction.type === 'delivery' ? '📦' : transaction.type === 'bonus' ? '🎁' : '💰'}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-900">

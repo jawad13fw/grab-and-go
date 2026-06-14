@@ -183,7 +183,7 @@ const AdminOrders = () => {
             <div className="w-full max-w-2xl rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold text-slate-900">Order Details</h2>
-                <button onClick={() => setSelectedOrder(null)} className="text-slate-500 hover:text-slate-900">x</button>
+                <button onClick={() => setSelectedOrder(null)} className="text-slate-500 hover:text-slate-900 text-2xl leading-none">&times;</button>
               </div>
               <div className="space-y-4">
                 <div>

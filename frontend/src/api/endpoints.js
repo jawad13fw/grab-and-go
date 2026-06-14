@@ -5,6 +5,8 @@ export const authApi = {
   register: (body) => api.post('/api/auth/register', body).then((r) => r.data),
   logout: () => api.post('/api/auth/logout').then((r) => r.data),
   me: () => api.get('/api/auth/me').then((r) => r.data),
+  forgotPassword: (email) => api.post('/api/auth/forgot-password', { email }).then((r) => r.data),
+  resetPassword: (token, password) => api.post('/api/auth/reset-password', { token, password }).then((r) => r.data),
 };
 
 export const catalogApi = {

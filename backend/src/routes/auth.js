@@ -162,11 +162,18 @@ router.post('/forgot-password', validateForgotPassword, async (req, res) => {
     await user.save();
     
     // In a real app, send email with reset link
-    // await sendPasswordResetEmail(user.email, resetToken);
+    // For now, return the reset link since email is not configured
+    const resetLink = `${req.headers.origin || req.headers.referer || ''}/reset-password?token=${resetToken}`;
     
     console.log(`Password reset requested for user ${user.id}`);
+    console.log(`Reset link: ${resetLink}`);
     
-    res.json({ success: true, message: 'If an account exists with this email, a reset link has been sent.' });
+    res.json({ 
+      success: true, 
+      message: 'If an account exists with this email, a reset link has been sent.',
+      // Include token for demo/dev — remove in production when email is configured
+      ...(config.NODE_ENV !== 'production' || !config.ENABLE_EMAIL ? { resetToken, resetLink } : {})
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -203,7 +210,7 @@ router.post('/reset-password', validateResetPassword, async (req, res) => {
 
 // Logout route - clears the httpOnly cookie
 router.post('/logout', (req, res) => {
-  res.clearCookie('token', { httpOnly: true, sameSite: 'lax', path: '/' });
+  res.clearCookie('token', { ...COOKIE_OPTIONS, maxAge: -1 });
   return res.json({ success: true, message: 'Logged out' });
 });
 

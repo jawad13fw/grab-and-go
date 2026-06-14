@@ -4,6 +4,8 @@ export const sharedPages = {
   Landing: lazy(() => import('../pages/Landing')),
   Login: lazy(() => import('../pages/Login')),
   Register: lazy(() => import('../pages/Register')),
+  ForgotPassword: lazy(() => import('../pages/ForgotPassword')),
+  ResetPassword: lazy(() => import('../pages/ResetPassword')),
   NotFound: lazy(() => import('../pages/NotFound')),
 };
 

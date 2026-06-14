@@ -138,6 +138,11 @@ const Login = () => {
           <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? 'Signing in...' : 'Sign in'}
           </Button>
+          <div className="text-center">
+            <Link to="/forgot-password" className="text-sm font-medium text-primary hover:underline">
+              Forgot your password?
+            </Link>
+          </div>
         </form>
         {status && (
           <div

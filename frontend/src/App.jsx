@@ -13,7 +13,7 @@ import { ToastProvider } from './components/common/ToastProvider';
 import { sharedPages, customerPages, vendorPages, riderPages, adminPages } from './modules/pageModules';
 
 // Domain-grouped page modules for clearer structure.
-const { Landing, Login, Register, NotFound } = sharedPages;
+const { Landing, Login, Register, ForgotPassword, ResetPassword, NotFound } = sharedPages;
 const {
   Home,
   Categories,
@@ -159,6 +159,8 @@ function App() {
           <Route path="/search" element={<PageWrapper><SearchResults /></PageWrapper>} />
           <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
           <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
+          <Route path="/forgot-password" element={<PageWrapper><ForgotPassword /></PageWrapper>} />
+          <Route path="/reset-password" element={<PageWrapper><ResetPassword /></PageWrapper>} />
           <Route
             path="/vendor/dashboard"
             element={

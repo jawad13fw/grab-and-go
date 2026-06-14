@@ -18,14 +18,28 @@ const SEED_SECRET = process.env.SEED_SECRET || 'seed-grabgo-2024';
 
 router.post('/', async (req, res) => {
   try {
-    const { secret } = req.body;
+    const { secret, force } = req.body;
     if (secret !== SEED_SECRET) {
       return res.status(403).json({ success: false, message: 'Invalid seed secret' });
     }
 
     const existingAdmin = await User.findOne({ role: 'Admin' });
-    if (existingAdmin) {
+    if (existingAdmin && !force) {
       return res.json({ success: true, message: 'Database already seeded', skipped: true });
+    }
+
+    // Clear existing data if force reset
+    if (existingAdmin && force) {
+      await Promise.all([
+        User.deleteMany({}),
+        Category.deleteMany({}),
+        Shop.deleteMany({}),
+        Product.deleteMany({}),
+        Rider.deleteMany({}),
+        AdminSettings.deleteMany({}),
+        Content.deleteMany({}),
+        PromoCode.deleteMany({})
+      ]);
     }
 
     // --- Users ---

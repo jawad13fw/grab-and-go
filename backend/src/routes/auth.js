@@ -68,7 +68,7 @@ router.post('/login', validateLogin, async (req, res) => {
       details: { email: user.email, role: user.role },
     });
 
-    return res.json({ success: true, user: out });
+    return res.json({ success: true, user: out, token });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ success: false, message: err.message });
@@ -125,6 +125,7 @@ router.post('/register', validateRegister, async (req, res) => {
     return res.json({ 
       success: true, 
       user: out, 
+      token,
       message: 'Registration successful! Please check your email to verify your account.'
     });
   } catch (err) {
@@ -214,10 +215,17 @@ router.post('/logout', (req, res) => {
   return res.json({ success: true, message: 'Logged out' });
 });
 
-// Check session route - verify if the current cookie is still valid
+// Check session route - verify if the current cookie or token is still valid
 router.get('/me', async (req, res) => {
   try {
-    const token = req.cookies?.token;
+    // Try cookie first, then Authorization header
+    let token = req.cookies?.token;
+    if (!token) {
+      const auth = req.headers.authorization;
+      if (auth && auth.startsWith('Bearer ')) {
+        token = auth.slice(7);
+      }
+    }
     if (!token) {
       return res.status(401).json({ success: false, message: 'Not authenticated' });
     }

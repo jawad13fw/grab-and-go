@@ -9,6 +9,15 @@ export const api = axios.create({
   withCredentials: true,  // send httpOnly cookies on every request
 });
 
+// Add Authorization header from localStorage token (fallback for cross-origin cookie issues)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token && !config.headers.Authorization) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // No request interceptor needed - the browser sends the cookie automatically
 
 api.interceptors.response.use(
@@ -24,6 +33,7 @@ api.interceptors.response.use(
     // Auto-logout on 401
     if (err.response?.status === 401) {
       localStorage.removeItem('user');
+      localStorage.removeItem('token');
       window.dispatchEvent(new Event('auth:logout'));
     }
 

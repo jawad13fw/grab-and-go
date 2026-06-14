@@ -36,11 +36,12 @@ const useAuthStore = create(
 
     login: async ({ email, password }) => {
       try {
-        const { success, user, message } = await authApi.login({ email, password });
+        const { success, user, message, token } = await authApi.login({ email, password });
         if (!success) return { success: false, message: message || 'Login failed' };
         const safeUser = buildSafeUser(user);
         if (!safeUser) return { success: false, message: 'Unsupported account role. Please contact support.' };
         localStorage.setItem('user', JSON.stringify(safeUser));
+        if (token) localStorage.setItem('token', token);
         set({ currentUser: safeUser });
         return { success: true, user: safeUser };
       } catch (err) {
@@ -52,16 +53,18 @@ const useAuthStore = create(
     logout: async () => {
       try { await authApi.logout(); } catch { /* ignore */ }
       localStorage.removeItem('user');
+      localStorage.removeItem('token');
       set({ currentUser: null });
     },
 
     register: async ({ name, email, password, role }) => {
       try {
-        const { success, user, message } = await authApi.register({ name, email, password, role });
+        const { success, user, message, token } = await authApi.register({ name, email, password, role });
         if (!success) return { success: false, message: message || 'Registration failed' };
         const safeUser = buildSafeUser(user);
         if (!safeUser) return { success: false, message: 'Unsupported account role. Please contact support.' };
         localStorage.setItem('user', JSON.stringify(safeUser));
+        if (token) localStorage.setItem('token', token);
         set({ currentUser: safeUser });
         return { success: true, user: safeUser, message: message || 'Registration successful!' };
       } catch (err) {
@@ -70,7 +73,7 @@ const useAuthStore = create(
       }
     },
 
-    // Check session on app start — cookie is sent automatically
+    // Check session on app start — cookie or token is sent automatically
     hydrate: async () => {
       try {
         const { success, user } = await authApi.me();
@@ -78,6 +81,7 @@ const useAuthStore = create(
           const safeUser = buildSafeUser(user);
           if (!safeUser) {
             localStorage.removeItem('user');
+            localStorage.removeItem('token');
             set({ currentUser: null });
             return;
           }
@@ -85,11 +89,13 @@ const useAuthStore = create(
           set({ currentUser: safeUser });
         } else {
           localStorage.removeItem('user');
+          localStorage.removeItem('token');
           set({ currentUser: null });
         }
       } catch {
-        // Cookie expired or invalid — clear local state
+        // Cookie/token expired or invalid — clear local state
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         set({ currentUser: null });
       }
     },

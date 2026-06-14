@@ -1,8 +1,16 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+// Conditionally import mongodb-memory-server (only available in dev)
+let MongoMemoryServer = null;
+try {
+  const mod = await import('mongodb-memory-server');
+  MongoMemoryServer = mod.MongoMemoryServer;
+} catch {
+  // Not available in production (devDependency) — that's fine
+}
 const DEFAULT_DB = 'grabandgo';
 const CONNECT_TIMEOUT_MS = Number(process.env.MONGO_CONNECT_TIMEOUT_MS || 7000);
 
@@ -30,6 +38,9 @@ function cleanStaleLockFile() {
 }
 
 async function startMemoryServer({ useTemp = false } = {}) {
+  if (!MongoMemoryServer) {
+    throw new Error('mongodb-memory-server is not installed (only available in development)');
+  }
   if (!memoryServer) {
     const forceTemp = process.env.DEV_MEM_DB_TMP === '1';
     const tempMode = useTemp || forceTemp;
